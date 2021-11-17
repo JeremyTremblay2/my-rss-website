@@ -1,0 +1,10 @@
+.idea
+.iwl
+.iws
+.DS_STORE
+.bak
+.thumbs
+**/workspace.xml
+**/rss.xml
+/bin
+/debug
