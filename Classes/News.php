@@ -3,7 +3,7 @@
  * Name : News.php
  * Project : My RSS website
  * Usefulness : contains a News class, allowing the instantiation of news.
- * Last Modification date : 17/11/2021
+ * Last Modification date : 18/11/2021
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 
@@ -47,7 +47,7 @@ class News {
      *
      * @param string $title The title to modify.
      */
-    protected function setTitle(string $title): void {
+    public function setTitle(string $title): void {
         $this->title = $title;
     }
 
@@ -61,12 +61,12 @@ class News {
     }
 
     /**
-     * Changes the link of the news.
+     * Set the link of the news.
      *
      * @param string $link The link to modify.
      * @return void
      */
-    protected function setLink(string $link): void {
+    public function setLink(string $link): void {
         $this->link = $link;
     }
 
@@ -80,11 +80,11 @@ class News {
     }
 
     /**
-     * Changes the description of the news.
+     * Set the description of the news.
      *
      * @param string $description The description to modify.
      */
-    protected function setDescription(string $description): void {
+    public function setDescription(string $description): void {
         $this->description = $description;
     }
 
@@ -98,16 +98,16 @@ class News {
     }
 
     /**
-     * Changes the release date of the news.
+     * Set the release date of the news.
      *
      * @param string $date The date to modify
      */
-    protected function setDate(string $date): void {
+    public function setDate(string $date): void {
         $this->date = $date;
     }
 
     /**
-     * Return a string representing a news.
+     * Return a string representing the news.
      *
      * @return string A string representing the news.
      */

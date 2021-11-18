@@ -5,6 +5,6 @@
 .bak
 .thumbs
 **/workspace.xml
-**/rss.xml
+.xml
 /bin
 /debug

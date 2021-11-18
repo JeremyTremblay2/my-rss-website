@@ -1,5 +1,4 @@
 <?php
-
 /** Name : config.php
  * Project : My RSS website
  * Usefulness : contains the global variables and constants of the website.
@@ -11,8 +10,8 @@
 $localPath = __DIR__ . '/../';
 
 // Database configuration
-$login = 'jetremblay';
-$password = 'achanger';
+$login = 'root';
+$password = '';
 $databaseName = "db" . $login;
 $dsn = 'mysql:host=local;dbname=' . $databaseName;
 
