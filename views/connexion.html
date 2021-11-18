@@ -8,22 +8,22 @@
     </head>
     <body>
         <header>
-            <h1>My RSS Website</h1>
-            <ul>
-                <li><a href="projet.html">National</a></li>
-                <li><a href="interNational.html">International</a></li>
-                <li><a href="connexion.html">Connexion</a></li>
-            </ul>
+                <img src="logo.png"/>
+                <h1>My RSS Website</h1>
+                
+                <button><a href="admin.html">admin</a></button>
         </header>
         
         <section>
             <div class="connexion">
                 <h1>Connexion</h1>
-                <form action="" >
-                    <label class="pseudo" for="pseudo">pseudo</label>
-                    <input type="text" id="pseudo" name="pseudo" placeholder="pseudo"><br>
-                    <label class="mdp" for="mdp">mot de passe</label>
-                    <input type="password" id="mdp" name="mdp" placeholder="mot de passe"><br>
+                <form name="myForm" >
+                    <label>pseudo :</label>
+                    <input type=text pattern="[a-zA-Z0-9\d@$!%*_-#?&]+" name="name" class="field-long" placeholder="pseudo" required>
+                    <label>mot de passe :</label>
+                    <input type=password pattern="[a-zA-Z0-9]+" name="name" class="field-long" placeholder="mot de passe" required>
+                    <span class="error" id="errorname"></span>
+                    <p><input type="submit" value="Envoyer"></p>
                 </form>
             </div>
         </section>
