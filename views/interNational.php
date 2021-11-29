@@ -3,7 +3,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <link type="text/css" rel="stylesheet" href="projet.css">
+        <link type="text/css" rel="stylesheet" href="css/stylesheet.css">
         <title>My RSS Website</title>
     </head>
     <body>
@@ -11,7 +11,7 @@
             <img src="logo.png"/>
             <h1>My RSS Website</h1>
             
-            <button><a href="connexion.html">admin</a></button>
+            <button><a href="connexion.php">admin</a></button>
     </header>
   	
     </body>
