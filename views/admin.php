@@ -15,32 +15,44 @@
         </header>
         
         <section>
-            <form name="myForm"  method="GET">
-                <label>Nombre de ligne par page :</label>
-                <input type=number pattern="[0-9]+" name="nbByPage" class="field-long" placeholder="number">
-                <label>Nombre de flux RSS retenu au total :</label>
-                <input type=number pattern="^[0-9]+$" name="nbTotal" class="field-long" placeholder="number">
-                </br>
-                <input class="submit" type="submit" value="Envoyer">
-            </form>
-            <div class="error">
-                <div class="txt">
+            <div class="formulaire">
+                <form name="myForm"  method="post">
+                    <label>Nombre de ligne par page :</label>
+                    <input type=number pattern="[0-9]+" name="nbByPage" class="field-long" placeholder="number">
+                    <label>Nombre de flux RSS retenu au total :</label>
+                    <input type=number pattern="^[0-9]+$" name="nbTotal" class="field-long" placeholder="number">
+                    </br>
+                    <p><input class="submit" type="submit" value="Envoyer"></p>
+                </form>
                 <?php
-                require('tabErreur.php');
-                $nbByPage = $_GET['nbByPage'];
-                $nbTot = $_GET['nbTotal'];
-                if (empty($nbByPage) || empty($nbTot)){
-                    echo $tabErr[1];
-                    //return;
+                require("../Classes/Validation.php");
+                $e = new Validation();
+                $msg = '';
+                $deb = '<div class="error"><div class="txt">';
+                $fin = '</div></div>';
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $msg = $deb;
+                    $nb = 0;
+                    $err = $e->entier((int)$_POST["nbByPage"]);
+                    if ($err != null){
+                        $msg .= 'Nombre de ligne par page : ';
+                        $msg .= $err;
+                        $nb = 1;
+                    }
+                    $err = $e->entier((int)$_POST["nbTotal"]);
+                    if ($err != null){
+                        $msg .= 'Nombre de flux RSS retenu au total : ';
+                        $msg .= $err;
+                        $nb = 1;
+                    }
+                    $msg .= $fin;
+                    if($nb==0){
+                        $msg='';
+                    }
+                    echo $msg;
                 }
-                if ($nbByPage>$nbTot){
-                    echo $tabErr[0];
-                }
-                else{
-                    echo '';
-                }
+
                 ?>
-                </div>
             </div>
         </section>
     </body>
