@@ -52,20 +52,23 @@ header button:hover > a{
 
 section{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-top: 10%;
     justify-content: center;
     min-height: 100%;
     font-size: 1.5em;
+    min-width: 400px;
 }
 
-section .connexion{
+section .formulaire{
     display: flex;
     flex-direction: column;
+    width: 20%;
+    min-width:300px;
     justify-content: center;
-    padding: 10px 100px 20px 100px;
     border: 1px solid grey;
     border-radius: 12px;
+    padding: 3% 6%;
     background-color: rgba(0,0,0,0.5);
 }
 
@@ -80,27 +83,31 @@ section form{
     text-align:center;
 }
 
-section form label.pseudo{
-    padding: 20px 0 10px 0;
-}
-
-section form label.mdp{
-    padding: 50px 0 10px 0;
+section form label{
+    margin: 10px 0 0 0;
 }
 
 section form input{
     display: flex;
-    width:25%;
+    width:100%;
     min-width: 200px;
     text-align: center;
+    justify-content: center;
     margin:auto;
     border: 1.5px solid grey;
     border-radius: 12px;
+    margin: 10px 0;
     font-size: 0.90em;
 }
 
-section form input submit{
-    text-align: center;
+section form p input:hover{
+    cursor: pointer;
+    background-color: dimgray;
+    color: white;
+}
+
+section form p input:focus{
+    background-color: green;
 }
 
 form :invalid{
@@ -128,5 +135,7 @@ form input:invalid ~ span {
 .error .txt{
     border: 1.5px solid red;
     border-radius: 12px;
+    padding: 10px;
+    font-size: large;
     background-color: #FFBABA;
 }
