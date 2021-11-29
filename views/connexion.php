@@ -9,13 +9,13 @@
     <body>
         <header>
                 <img src="https://imgr.search.brave.com/XcnMrUqaudF1J_X_M9oulPGbTeZ-ri9MJ_N7oXbqVWI/fit/844/225/ce/1/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5y/NndKcDBkTXBRcHJm/UzJOVWxELUlRSGFF/SyZwaWQ9QXBp"/>
-                <h1>My RSS Website</h1>
+            <h1><a class="h1" href="projet.php">My RSS Website</a></h1>
                 
-                <button><a href="admin.html">admin</a></button>
+                <button><a class="button" href="admin.php">admin</a></button>
         </header>
         
         <section>
-            <div class="connexion">
+            <div class="formulaire">
                 <h1>Connexion</h1>
                 <form name="myForm" method="post">
                     <label>pseudo :</label>
