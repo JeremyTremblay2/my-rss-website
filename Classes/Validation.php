@@ -32,19 +32,20 @@ class Validation {
             return $e->getMessage();
         }
     }
-    static function entier(int $val) : ?int {
+    static function entier(int $val) : ?string {
         try {
-            if (empty($val)) {
-                self::throwError(Constants::EMPTY_ERROR, 900);
+            if ((int)empty($val)) {
+                throw new Exception(Constants::EMPTY_ERROR);
             }
             if (!is_int($val)) {
-                self::throwError(Constants::INCORRECT_ERROR, 901);
+                throw new Exception(Constants::INCORRECT_ERROR);
             }
-            return self::cleanInput($val);
+            else{
+                return null; // self::cleanInput($val);
+            }
         }
         catch (Exception $e){
-            echo $e;
-            return null;
+            return $e->getMessage();
         }
     }
 
