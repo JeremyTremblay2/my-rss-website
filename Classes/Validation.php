@@ -1,75 +1,63 @@
 <?php
 /**
- * Name : User.php
+ * Name : Validation.php
  * Project : My RSS website
- * Usefulness : contains a User class, allowing the instantiation of users.
+ * Usefulness : contains a Validation class, allowing verifications on data entered in forms.
  * Last Modification date : 18/11/2021
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 
 /**
- * A User class, represent a person, with his username (it can be a pseudo) and a password.
- *
- * Users have a username and a password.
+ * A Validation class. Used for validates fields in a form, when a user wants to connect himself.
  */
-class User {
+require_once('Constants.php');
+class Validation {
 
-    private string $username;
-    private string $password;
+    static bool $errors = true;
+    public string $msg;
 
-    /**
-     * Create a new User.
-     *
-     * @param string $username The username of the user.
-     * @param string $password The password of the user.
-     */
-    public function __construct(string $username, string $password) {
-        $this->username = $username;
-        $this->password = $password;
+    public function __construct()
+    {
+    }
+
+    static function str(string $val): string {
+            if ((string)empty($val)) {
+                throw new Exception(Constants::EMPTY_ERROR);
+            }
+            if (!is_string($val)) {
+                throw new Exception(Constants::INCORRECT_ERROR);
+            }
+            return self::cleanInput($val);
+    }
+    static function entier(int $val) : ?string {
+        try {
+            if ((int)empty($val)) {
+                throw new Exception(Constants::EMPTY_ERROR);
+            }
+            if (!is_int($val)) {
+                throw new Exception(Constants::INCORRECT_ERROR);
+            }
+            else{
+                return null; // self::cleanInput($val);
+            }
+        }
+        catch (Exception $e){
+            return $e->getMessage();
+        }
+    }
+
+    static function cleanInput(string $data): string {
+        $data = trim($data);
+        $data = stripslashes($data);
+        return htmlspecialchars($data);
     }
 
     /**
-     * Get the username of a user.
-     *
-     * @return string The username of a user.
+     * @throws Exception
      */
-    public function getUsername(): string {
-        return $this->username;
-    }
-
-    /**
-     * Set the username of a user.
-     *
-     * @param string $username The username of the user to change.
-     */
-    public function setUsername(string $username) {
-        $this->username = $username;
-    }
-
-    /**
-     * Get the password of the user.
-     *
-     * @return string The password of the user.
-     */
-    public function getPassword(): string {
-        return $this->password;
-    }
-
-    /**
-     * Set the password of a user.
-     *
-     * @param string $password The new password.
-     */
-    public function setPassword(string $password) {
-        $this->password = $password;
-    }
-
-    /**
-     * Return a string representing the User.
-     *
-     * @return string A string representing the user.
-     */
-    public function __toString() : string {
-        return '{' . $this->username . ' ; ' . str_repeat('*', strlen($this->password)) . '}';
+    static function throwError($error = Constants::GLOBAL_ERROR, $errorCode = 0)  {
+        if (self::$errors == true) {
+            throw new Exception($error, $errorCode);
+        }
     }
 }
