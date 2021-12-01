@@ -16,7 +16,7 @@
         
         <section>
             <div class="formulaire">
-                <form name="myForm"  method="post">
+                <form name="myForm"  method="post" action="../controllers/CtrlUser.php?action=valider">
                     <label>Nombre de ligne par page :</label>
                     <input type=number pattern="[0-9]+" name="nbByPage" class="field-long" placeholder="number">
                     <label>Nombre de flux RSS retenu au total :</label>
@@ -25,7 +25,13 @@
                     <p><input class="submit" type="submit" value="Envoyer"></p>
                 </form>
                 <?php
-                require("../Classes/Validation.php");
+                if(!isset($tabErr)){
+                    echo "<p>{$tabErr}</p>";
+                }
+                else{
+                    echo "tranquillou pillou";
+                }
+                /*require("../Classes/Validation.php");
                 $e = new Validation();
                 $msg = '';
                 $deb = '<div class="error"><div class="txt">';
@@ -50,7 +56,7 @@
                         $msg='';
                     }
                     echo $msg;
-                }
+                }*/
 
                 ?>
             </div>
