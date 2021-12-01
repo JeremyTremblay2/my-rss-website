@@ -1,11 +1,11 @@
-<html>
+<html lang="fr">
 
 <body>
-test
-
 <?php
-
-require_once("Connection.php");
+require("CtrlUser.php");
+$ctrl = new CtrlUser();
+/*
+require_once("../Classes/Connection.php");
 
 //A CHANGER 
 $user= 'sasa';
@@ -27,7 +27,7 @@ Foreach ($results as $row)
 }
 catch( PDOException $Exception ) {
 echo 'erreur';
-echo $Exception->getMessage();}
+echo $Exception->getMessage();}*/
 ?>
 
 </body>
