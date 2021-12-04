@@ -45,7 +45,7 @@ $rssFeedArray = array(
     array('Guide d\'achats', 'https://www.lemonde.fr/guides-d-achat/rss_full.xml', $date),
 );
 
-// Insertions in the databases if the key value pair doesn't exists.
+// Insertions in the database if the key/value pair doesn't exists.
 $results = $userModel->getUser('admin');
 if ($results == null) {
     $userModel->insertUser("admin", password_hash("motDePasse2*", PASSWORD_DEFAULT));

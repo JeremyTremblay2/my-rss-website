@@ -64,7 +64,7 @@ class NewsGateway {
      * @return array An array of results or null if the request fail.
      */
     public function findAllNews() : ?array {
-        $query = 'SELECT * FROM news ORDER BY publicationDate';
+        $query = 'SELECT * FROM news ORDER BY publicationDate DESC';
         $success = $this->connection->executeQuery($query, array());
         if ($success) {
             $results = $this->connection->getResults();
@@ -81,8 +81,7 @@ class NewsGateway {
      * @return array Returns an array of data or null if the request fails.
      */
     public function findInRange(int $limit, int $offset) : ?array {
-        $rssFeedArray = array();
-        $query = 'SELECT * FROM news LIMIT :limit OFFSET :offset';
+        $query = 'SELECT * FROM news ORDER BY publicationDate DESC LIMIT :limit OFFSET :offset';
         $success = $this->connection->executeQuery($query, array(
             ':limit' => array($limit, PDO::PARAM_INT),
             ':offset' => array($offset, PDO::PARAM_INT)
@@ -102,7 +101,7 @@ class NewsGateway {
      * @return array An array of news or null if the request fails.
      */
     public function findByStream(int $idRssFeed) : ?array {
-        $query = 'SELECT * FROM news WHERE streamIdf = :idRssFeed ORDER BY publicationDate ';
+        $query = 'SELECT * FROM news WHERE streamIdf = :idRssFeed ORDER BY publicationDate DESC';
         $success = $this->connection->executeQuery($query, array(
             ':idRssFeed' => array($idRssFeed, PDO::PARAM_INT)
         ));

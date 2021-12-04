@@ -1,61 +1,60 @@
 <?php
-require("../Classes/Validation.php");
-require("../config/config.php");
+
 class UserController
 {
-    public function __construct()
-    {
+    public function __construct() {
         global $localPath, $views;
-        $errorViews = array();
-        require_once($localPath . $views['connect']);
+        $errorView = array();
 
         try{
             $action = $_REQUEST['action'] ?? null;
-            $action = Validation::cleanInput($action);
+            if ($action != null) {
+                $action = Validation::cleanInput($action);
+            }
 
             switch($action){
                 case null:
-                    $this->Init();
+                    $this->init();
                     break;
                 case "connection":
+                    echo "toto";
                     $this->connection();
                     break;
                 case "connectionClick":
                     $this->connectionClicked();
                     break;
                 default:
-                    $errorViews[] = "Erreur lors de l'appel PHP.";
-                    require_once($localPath . $views["auth"]);
+                    $errorView[] = "Erreur lors de l'appel PHP.";
+                    require_once($localPath . $views["error"]);
                     break;
             }
         }
         catch(PDOException $e) {
-            $errorViews[] = 'Erreur innatendue lors de l\'accès à la base de données.' ;
+            $errorView[] = 'Erreur innatendue lors de l\'accès à la base de données.' ;
             require_once($localPath . $views["error"]);
         }
         catch (Exception $e){
-            $errorViews[] = 'Erreur innatendue dans le traitement de votre requête. Informations complémentaires : ' .
+            $errorView[] = 'Erreur innatendue dans le traitement de votre requête. Informations complémentaires : ' .
                 $e->getMessage();
             require_once($localPath . $views["error"]);
         }
     }
 
-    private function Init(){
-        global $localPath, $views, $numberOfPages;
+    private function init(){
+        global $localPath, $views, $numberOfPages, $dsn, $login, $password;
+        $currentPage = $_REQUEST['page'] ?? 1;
+        $currentPage = Validation::int($currentPage);
 
-        $newsModel = new NewsModel();
-        $configurationModel = new ConfigurationModel();
+        $newsModel = new NewsModel(new Connection($dsn, $login, $password));
+        $configurationModel = new ConfigurationModel(new Connection($dsn, $login, $password));
 
         $numberOfNews = $newsModel->getNumberOfNews();
-        $numberOfNewsPerPage = $configurationModel->getValue('numberOfNewsPerPage');
+        $numberOfNewsPerPage = $configurationModel->getConfiguration('numberOfNewsPerPage')->getValue();
 
         // Shouldn't happen
         if ($numberOfNewsPerPage == null or $numberOfNewsPerPage <= 0) {
-            throw new Exception('Le nombre de news par page du site semble mal configuré, contactez l\'administrateur');
-        }
-
-        if ($numberOfNews == null or $numberOfNews <= 0) {
-            $numberOfNews = 1;
+            $configurationModel->insertConfiguration('numberOfNewsPerPage', 10);
+            $numberOfNewsPerPage = 10;
         }
 
         $numberOfPages = (int) ($numberOfNews / $numberOfNewsPerPage);
@@ -63,8 +62,12 @@ class UserController
             $numberOfPages = $numberOfPages + 1;
         }
 
-        $newsList = $newsModel->findAllNews();
-        require_once($localPath . $views['news']);
+        if ($currentPage > $numberOfPages) {
+            $currentPage = 1;
+        }
+
+        $viewData = $newsModel->findNewsInRange($numberOfNewsPerPage, ($currentPage - 1) * $numberOfNewsPerPage);
+        require($localPath . $views['news']);
     }
 
     private function reset() {
@@ -82,19 +85,17 @@ class UserController
         $username = $_POST['name'] ?? null;
         $password = $_POST['password'] ?? null;
 
-        try {
+        if ($username != null and $password != null) {
             Validation::str($username);
             Validation::str($password);
-            //$valeur = $model->get_value();
             $viewData = array(
                 'pseudo' => $username,
                 'password' => $password,
             );
             require ($localPath . $views['auth']);
         }
-        catch (Exception $e){
-            $errorViews[] = $e->getMessage();
-            require ($localPath.$views['auth']);
+        else {
+            $this->reset();
         }
     }
 
@@ -102,8 +103,5 @@ class UserController
 
     }
 }
-new UserController();
-//password_hash
-//password_verify(mdpclaire,mdpcripté)
 ?>
 

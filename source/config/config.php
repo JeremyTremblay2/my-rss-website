@@ -8,6 +8,7 @@
 
 // The local folder
 $localPath = __DIR__ . '/../';
+echo $localPath;
 
 // Database configuration
 $login = 'root';
@@ -20,7 +21,7 @@ $views['error'] = 'views/error.php';
 $views['news'] = 'views/newsList.php';
 $views['auth'] = 'views/connection.php';
 $views['admin'] = 'views/admin.php';
-$parser['parser'] = 'parser/parsgger.php';
+$parser['parser'] = 'parser/parser.php';
 
 //Global variables
 $numberOfPages = 1;

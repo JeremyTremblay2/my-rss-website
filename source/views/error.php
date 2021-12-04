@@ -16,7 +16,7 @@
             <!-- Add content here -->
         </header>
         <main>
-            <h1>Erreur, vous ne devriez pas être ici</h1>
+            <h1>Vous ne devriez pas être ici</h1>
             <p>
                 Il semblerait qu'il y a eu une erreur interne. Pour plus d'informations, contactez l'administrateur du site web.
             </p>

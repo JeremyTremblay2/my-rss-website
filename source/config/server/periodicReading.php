@@ -1,14 +1,8 @@
 <?php
 
-require_once('config/config.php');
-require_once('models/job/Connection.php');
-require_once('models/job/RssFeed.php');
-require_once('models/job/RssFeedGateway.php');
-require_once('models/RssFeedModel.php');
-require_once('models/job/News.php');
-require_once('models/job/NewsGateway.php');
-require_once('models/NewsModel.php');
-require_once('parser/Parser.php');
+require_once('../config.php');
+require_once('../Autoload.php');
+Autoload::charger();
 
 // Connection and instantiations.
 if (!(isset($login) and isset($password) and isset($dsn))) {

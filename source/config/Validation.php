@@ -14,7 +14,7 @@
 require_once('Constants.php');
 
 class Validation {
-    static bool $errors = true;
+    static $errors = true;
 
     static function str(string $val): ?string {
         if ((string) empty($val)) {
