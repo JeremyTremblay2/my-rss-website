@@ -14,24 +14,24 @@
  */
 class RssFeed {
 
-    private string $name;
-    private string $link;
-    private string $updateDate;
-    private int $id;
+    private $name;
+    private $link;
+    private $updateDate;
+    private $id;
 
     /**
      * Create a new RssFeed.
      *
+     * @param int $id A unique id for this Rss feed.
      * @param string $name The name of this Rss feed.
      * @param string $link The link to this Rss feed.
      * @param string $updateDate The date of the last update of this Rss feed.
-     * @param int $id A unique id for this Rss feed.
      */
-    public function __construct(string $name, string $link, string $updateDate, int $id) {
+    public function __construct(int $id, string $name, string $link, string $updateDate) {
+        $this->id = $id;
         $this->name = $name;
         $this->link = $link;
         $this->updateDate = $updateDate;
-        $this->id = $id;
     }
 
     /**
@@ -48,7 +48,7 @@ class RssFeed {
      *
      * @param string $name The name to set on the stream.
      */
-    public function setName(string $name) {
+    private function setName(string $name) {
         $this->name = $name;
     }
 
@@ -66,7 +66,7 @@ class RssFeed {
      *
      * @param string $link The link to set on the stream.
      */
-    public function setLink(string $link) {
+    private function setLink(string $link) {
         $this->link = $link;
     }
 
@@ -84,7 +84,7 @@ class RssFeed {
      *
      * @param string $updateDate The last modification date to set on the stream.
      */
-    public function setUpdateDate(string $updateDate) {
+    private function setUpdateDate(string $updateDate) {
         $this->updateDate = $updateDate;
     }
 
@@ -112,7 +112,6 @@ class RssFeed {
      * @return string A string representing the rss feed.
      */
     public function __toString() : string {
-        return 'Id : ' . $this->id . ', Name : ' . $this->name . ', Last modification update : ' .
-            $this->updateDate . ', Link : ' . $this->link;
+        return '{' . $this->id . '} : ' . $this->updateDate . ' ' . $this->name . ' ' . $this->link;
     }
 }

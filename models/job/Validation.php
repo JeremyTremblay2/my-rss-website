@@ -10,40 +10,30 @@
 /**
  * A Validation class. Used for validates fields in a form, when a user wants to connect himself.
  */
+
 require_once('Constants.php');
+
 class Validation {
-
     static bool $errors = true;
-    public string $msg;
 
-    public function __construct()
-    {
+    static function str(string $val): ?string {
+        if ((string) empty($val)) {
+            self::throwError(Constants::EMPTY_ERROR, 900);
+        }
+        if (!is_string($val)) {
+            self::throwError(Constants::INCORRECT_ERROR, 901);
+        }
+        return self::cleanInput($val);
     }
 
-    static function str(string $val): string {
-            if ((string)empty($val)) {
-                throw new Exception(Constants::EMPTY_ERROR);
-            }
-            if (!is_string($val)) {
-                throw new Exception(Constants::INCORRECT_ERROR);
-            }
-            return self::cleanInput($val);
-    }
-    static function entier(int $val) : ?string {
-        try {
-            if ((int)empty($val)) {
-                throw new Exception(Constants::EMPTY_ERROR);
-            }
-            if (!is_int($val)) {
-                throw new Exception(Constants::INCORRECT_ERROR);
-            }
-            else{
-                return null; // self::cleanInput($val);
-            }
+    static function int(int $val) : ?int {
+        if ((int) empty($val)) {
+            self::throwError(Constants::EMPTY_ERROR, 900);
         }
-        catch (Exception $e){
-            return $e->getMessage();
+        if (!is_int($val)) {
+            self::throwError(Constants::INCORRECT_ERROR, 901);
         }
+        return self::cleanInput($val);
     }
 
     static function cleanInput(string $data): string {

@@ -12,17 +12,15 @@ $localPath = __DIR__ . '/../';
 // Database configuration
 $login = 'root';
 $password = '';
-$databaseName = "db" . $login;
-$dsn = 'mysql:host=local;dbname=' . $databaseName;
-
+$databaseName = "project";
+$dsn = 'mysql:dbname=' . $databaseName . ';host=localhost';
 // Files and views
-$parser['parser'] = 'parser/parser.php';
+$views['index'] = 'index.php';
 $views['error'] = 'views/error.php';
-$views['auth'] = 'views/admin.php';
-$views['connect'] = 'views/connexion.php';
+$views['news'] = 'views/newsList.php';
+$views['auth'] = 'views/connection.php';
+$views['admin'] = 'views/admin.php';
+$parser['parser'] = 'parser/parsgger.php';
 
-//tableau d'erreur
-$PbNbLigne = "<p> Le nombre de ligne par page doit être supérieur au nombre de ligne total</p>";
-$PbChampVide = "<p> veuillez renseigner tout les champs</p>";
-
-$tabErr = [$PbNbLigne,$PbChampVide];
+//Global variables
+$numberOfPages = 1;

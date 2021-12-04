@@ -14,8 +14,8 @@
  */
 class User {
 
-    private string $username;
-    private string $password;
+    private $username;
+    private $password;
 
     /**
      * Create a new User.
@@ -42,7 +42,7 @@ class User {
      *
      * @param string $username The username of the user to change.
      */
-    public function setUsername(string $username) {
+    private function setUsername(string $username) {
         $this->username = $username;
     }
 
@@ -60,7 +60,7 @@ class User {
      *
      * @param string $password The new password.
      */
-    public function setPassword(string $password) {
+    private function setPassword(string $password) {
         $this->password = $password;
     }
 

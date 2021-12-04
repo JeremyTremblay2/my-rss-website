@@ -15,7 +15,7 @@
  */
 class ConfigurationGateway {
 
-    private Connection $connection;
+    private $connection;
 
     /**
      * Create a ConfigurationGateway.
@@ -30,18 +30,18 @@ class ConfigurationGateway {
      * Get a configuration in the database with its key.
      *
      * @param string $key The key of the configuration that will be get retrieve.
-     * @return Configuration Returns a configuration.
+     * @return array Returns an array or null if the request fails.
      */
-    public function get(string $key) : Configuration {
-        $configurationArray = array();
-        $query = 'SELECT value FROM CONFIGURATION WHERE key = :key';
-        $this->connection->executeQuery($query, array(
+    public function get(string $key) : ?array {
+        $query = 'SELECT valuep FROM configuration WHERE keyp = :key';
+        $success = $this->connection->executeQuery($query, array(
             ':key' => array($key, PDO::PARAM_STR)
         ));
-        $results = $this->connection->getResults();
-        // Please, add a try catch block
-        $configurationArray[] = new Configuration($results['key'], $results['value']);
-        return $configurationArray[0];
+        if ($success) {
+            $results = $this->connection->getResults();
+            return $results;
+        }
+        return null;
     }
 
     /**
@@ -51,7 +51,7 @@ class ConfigurationGateway {
      * @param int $value The value of the configuration that will be inserted.
      */
     public function insert(string $key, int $value) {
-        $query = 'INSERT INTO CONFIGURATION VALUES(:key, :value)';
+        $query = 'INSERT INTO configuration VALUES(:key, :value)';
         $this->connection->executeQuery($query, array(
             ':key' => array($key, PDO::PARAM_STR),
             ':value' => array($value, PDO::PARAM_INT)
@@ -65,7 +65,7 @@ class ConfigurationGateway {
      * @param int $value The value of the configuration to update.
      */
     public function update(string $key, int $value) {
-        $query = 'UPDATE CONFIGURATION SET value = :value WHERE key = :key';
+        $query = 'UPDATE configuration SET valuep = :value WHERE keyp = :key';
         $this->connection->executeQuery($query, array(
             ':key' => array($key, PDO::PARAM_STR),
             ':value' => array($value, PDO::PARAM_INT)
@@ -78,10 +78,9 @@ class ConfigurationGateway {
      * @param string $key The key of the configuration to delete.
      */
     public function delete(string $key) {
-        $query = 'DELETE FROM CONFIGURATION WHERE key = :key';
+        $query = 'DELETE FROM configuration WHERE keyp = :key';
         $this->connection->executeQuery($query, array(
             ':key' => array($key, PDO::PARAM_STR)
         ));
     }
-
 }

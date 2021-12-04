@@ -13,8 +13,8 @@
  * Used for save the number of news in a page of the website.
  */
 class Configuration {
-    private string $key;
-    private int $value;
+    private $key;
+    private $value;
 
     /**
      * Create a configuration.
@@ -41,7 +41,7 @@ class Configuration {
      *
      * @param string $key The key to set on the configuration.
      */
-    public function setKey(string $key) {
+    private function setKey(string $key) {
         $this->key = $key;
     }
 
@@ -59,7 +59,7 @@ class Configuration {
      *
      * @param int $value The value to set on the configuration.
      */
-    public function setValue(int $value) {
+    private function setValue(int $value) {
         $this->value = $value;
     }
 
