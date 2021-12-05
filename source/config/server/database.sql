@@ -326,7 +326,7 @@ CREATE TABLE IF NOT EXISTS `rssfeed` (
 
 INSERT INTO `rssfeed` (`streamId`, `name`, `link`, `updateDate`) VALUES
 (136, 'M le Mag', 'https://www.lemonde.fr/m-le-mag/rss_full.xml', '2021-12-04 14:52:28'),
-(137, 'Guide d\''achats', 'https://www.lemonde.fr/guides-d-achat/rss_full.xml', '2021-12-04 14:52:28'),
+(137, 'Guide d\'achats', 'https://www.lemonde.fr/guides-d-achat/rss_full.xml', '2021-12-04 14:52:28'),
 (134, 'Sciences', 'https://www.lemonde.fr/sciences/rss_full.xml', '2021-12-04 14:52:28'),
 (135, 'Opinion', 'https://www.lemonde.fr/idees/rss_full.xml', '2021-12-04 14:52:28'),
 (133, 'Pixels', 'https://www.lemonde.fr/pixels/rss_full.xml', '2021-12-04 14:52:28'),

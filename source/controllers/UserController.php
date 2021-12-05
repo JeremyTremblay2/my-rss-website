@@ -5,7 +5,7 @@ class UserController
     public function __construct() {
         global $localPath, $views;
         $errorView = array();
-
+        $dataView = array();
         try{
             $action = $_REQUEST['action'] ?? null;
             if ($action != null) {
@@ -17,8 +17,7 @@ class UserController
                     $this->init();
                     break;
                 case "connection":
-                    echo "toto";
-                    $this->connection();
+                    $this->init();
                     break;
                 case "connectionClick":
                     $this->connectionClicked();
@@ -72,7 +71,7 @@ class UserController
 
     private function reset() {
         global $localPath, $views;
-        $dataVue = array (
+        $viewData = array (
             'pseudo' => "",
             'password' => "",
             'data' => "",
@@ -103,5 +102,5 @@ class UserController
 
     }
 }
-?>
+
 

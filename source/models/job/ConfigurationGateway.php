@@ -4,7 +4,7 @@
  * Project : My RSS website
  * Usefulness : contains a ConfigurationGateway class, allowing actions on data inside the database, like updates,
  * researches and deletes.
- * Last Modification date : 18/11/2021
+ * Last Modification date : 05/12/2021
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 

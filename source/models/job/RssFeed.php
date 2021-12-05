@@ -3,7 +3,7 @@
  * Name : RssFeed.php
  * Project : My RSS website
  * Usefulness : contains a RssFeed class, allowing the instantiation of rss feeds.
- * Last Modification date : 18/11/2021
+ * Last Modification date : 05/12/2021
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 

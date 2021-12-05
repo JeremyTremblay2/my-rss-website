@@ -2,17 +2,16 @@
 /** Name : config.php
  * Project : My RSS website
  * Usefulness : contains the global variables and constants of the website.
- * Last Modification date : 17/11/2021
+ * Last Modification date : 05/12/2021
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 
 // The local folder
 $localPath = __DIR__ . '/../';
-echo $localPath;
 
 // Database configuration
-$login = 'root';
-$password = '';
+$login = 'myrss';
+$password = 'myrss';
 $databaseName = "project";
 $dsn = 'mysql:dbname=' . $databaseName . ';host=localhost';
 // Files and views
