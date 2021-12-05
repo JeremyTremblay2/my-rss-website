@@ -2,7 +2,7 @@
 /** Name : index.php
 * Project : My RSS website
 * Usefulness : Main page of the website.
-* Last Modification date : 17/11/2021
+* Last Modification date : 05/12/2021
 * Authors : Maxime GRANET, Jérémy TREMBLAY
 */
 

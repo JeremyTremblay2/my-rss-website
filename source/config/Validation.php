@@ -3,7 +3,7 @@
  * Name : Validation.php
  * Project : My RSS website
  * Usefulness : contains a Validation class, allowing verifications on data entered in forms.
- * Last Modification date : 18/11/2021
+ * Last Modification date : 05/12/2021
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 
