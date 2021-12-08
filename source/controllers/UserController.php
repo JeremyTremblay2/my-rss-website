@@ -100,7 +100,20 @@ class UserController
     }
 
     private function connectionClicked() {
+        global $localPath, $views;
 
+        $username = $_POST['name'] ?? null;
+        $password = $_POST['password'] ?? null;
+
+        if($username==null || $password==null){
+            $errorViews = "Veuillez entrer un pseudo ou un mot de passe";
+            echo "titi";
+            require ($localPath . $views['connect']);
+        }
+        else{
+            echo "toto";
+            require ($localPath . $views['auth']);
+        }
     }
 }
 ?>

@@ -34,12 +34,12 @@
         <section>
             <div class="formulaire">
                 <h1>Connexion</h1>
-                    <form name="myForm" method="post" action="admin.php">
+                    <form name="myForm" method="post" action="../controllers/UserController.php?action=connectionClicked">
                         <label>pseudo :</label>
                         <input type=text pattern="[a-zA-Z0-9\d@$!%*_-#?&]+" value="<?= $viewData['username'] ?>" name="name" class="field-long" placeholder="pseudo" VALUE=<?=$viewData['username']?>>
                         <label>mot de passe :</label>
                         <input type=password pattern="[a-zA-Z0-9]+" name="password" class="field-long" placeholder="mot de passe">
-                        <p><input type="submit" value="Envoyer"></p>
+                        <input class="validation" type="submit" value="Envoyer">
                 </form>
             </div>
         </section>
