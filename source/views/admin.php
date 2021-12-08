@@ -3,24 +3,24 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <link type="text/css" rel="stylesheet" href="css/stylesheet2.css">
+        <link type="text/css" rel="stylesheet" href="views/css/stylesheet1.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
         <title>My RSS Website</title>
     </head>
     <body>
         <header>
-                <img src="ressources/images/RSS-logo.png"/>
+                <img src="views/ressources/images/RSS-logo.png"/>
                 <h1>My RSS Website</h1>
                 
-                <button><a class="button" href="login.php">déconnection</a></button>
+                <button><a class="button" href="?action=connection">déconnection</a></button>
         </header>
 
-        <a class="accueil" href="../index.php"><-Accueil</a>
+        <a class="accueil" href="?action=home"><-Accueil</a>
         <section>
             <div class="formulaireAdmin">
                 <label>Nombre de ligne par page :</label>
-                <form class="admin" name="myForm"  method="post" action="../controllers/UserController.php?action=valider">
+                <form class="admin" name="myForm"  method="post" action="?action=valider">
                     <input type=number pattern="[0-9]+" name="nbByPage" class="field-long" placeholder="number">
                     <input class="submit" type="submit" value="OK">
                 </form>

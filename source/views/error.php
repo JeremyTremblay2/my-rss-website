@@ -8,16 +8,47 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
+        <style>
+            /*Vue d'erreur*/
+            main{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 90vh;
+            }
+
+            main h1{
+                color: white;
+                font-size: xxx-large;
+            }
+
+            main a.email{
+                color: black;
+                text-decoration: underline;
+            }
+
+            main h3{
+                font-size: x-large;
+            }
+
+            main .list{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
         <meta charset="utf-8">
-        <link type="text/css" rel="stylesheet" href="css/stylesheet2.css">
+        <link type="text/css" rel="stylesheet" href="views/css/stylesheet.css">
         <title>Erreur interne</title>
     </head>
     <body>
         <header>
-            <img src="ressources/images/RSS-logo.png"/>
+            <img src="views/ressources/images/RSS-logo.png"/>
             <h1>My RSS Website</h1>
 
-            <button><a class="button" href="../index.php">retour en lieu sûr</a></button>
+            <button><a class="button" href="?action=init">retour en lieu sûr</a></button>
         </header>
         <main>
             <h1>Vous ne devriez pas être ici !!!</h1>

@@ -286,6 +286,7 @@ button.add:hover{
 
 .error{
     display: flex;
+    flex-direction: column;
     margin-top: 10px;
     justify-content: center;
     color: #D8000C;
@@ -324,11 +325,11 @@ button.add:hover{
     animation-duration: 1s;
 }
 @keyframes pannel {
-    0% {left:0px; right:0px}
-    25% {left:5px; right:0px}
-    50% {left:-10px; right:0px}
-    75% {left:5px; right:0px}
-    100% {left:0px; right:0px}
+    0% {left:0; right:0}
+    25% {left:5px; right:0}
+    50% {left:-10px; right:0}
+    75% {left:5px; right:0}
+    100% {left:0; right:0}
 }
 
 article{
@@ -397,32 +398,3 @@ footer a:hover{
     text-decoration: blue underline;
 }
 
-/*Vue d'erreur*/
-main{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-}
-
-main h1{
-    color: white;
-    font-size: xxx-large;
-}
-
-main a.email{
-    color: black;
-    text-decoration: underline;
-}
-
-main h3{
-    font-size: x-large;
-}
-
-main .list{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}

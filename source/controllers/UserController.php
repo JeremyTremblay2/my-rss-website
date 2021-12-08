@@ -1,5 +1,7 @@
 <?php
 
+//classe config static/singleton => construct => param clé
+
 class UserController
 {
     public function __construct() {
@@ -14,6 +16,7 @@ class UserController
 
             switch($action){
                 case null:
+                case "home":
                     $this->init();
                     break;
                 case "connection":
@@ -21,6 +24,9 @@ class UserController
                     break;
                 case "connectionClick":
                     $this->connectionClicked();
+                    break;
+                case "valider":
+                    $this->valider();
                     break;
                 default:
                     $errorView[] = "Erreur lors de l'appel PHP.";
@@ -91,29 +97,38 @@ class UserController
                 'pseudo' => $username,
                 'password' => $password,
             );
-
+            require ($localPath . $views['auth']);
         }
         else {
             $this->reset();
         }
-        require ($localPath . $views['auth']);
     }
 
     private function connectionClicked() {
         global $localPath, $views;
-
+        $errorViews = [];
+        $err = 0;
         $username = $_POST['name'] ?? null;
         $password = $_POST['password'] ?? null;
 
-        if($username==null || $password==null){
-            $errorViews = "Veuillez entrer un pseudo ou un mot de passe";
-            echo "titi";
-            require ($localPath . $views['connect']);
+        if($username==null){
+            $errorViews[0] = "Veuillez entrer un pseudo!";
+            $err = 1;
+        }
+        if($password==null){
+            $errorViews[1] = "Veuillez entrer un mot de passe !";
+            $err = 1;
+        }
+        if($err == 1) {
+            require($localPath . $views['auth']);
         }
         else{
-            echo "toto";
-            require ($localPath . $views['auth']);
+            require ($localPath . $views['admin']);
         }
+    }
+
+    private function valider(){
+
     }
 }
 ?>
