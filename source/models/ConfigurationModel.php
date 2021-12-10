@@ -11,8 +11,7 @@ class ConfigurationModel {
     public function getConfiguration(string $key) : ?Configuration {
         $results = $this->gateway->get($key);
         if (!empty($results)) {
-            $configuration = new Configuration($key, $results[0]['valuep']);
-            return $configuration;
+            return new Configuration($results[0]['idConfiguration'], $key, $results[0]['valuep']);
         }
         return null;
     }

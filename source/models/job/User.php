@@ -13,7 +13,7 @@
  * Users have a username and a password.
  */
 class User {
-
+    private $id;
     private $username;
     private $password;
 
@@ -23,9 +23,28 @@ class User {
      * @param string $username The username of the user.
      * @param string $password The password of the user.
      */
-    public function __construct(string $username, string $password) {
+    public function __construct(int $id, string $username, string $password) {
+        $this->id = $id;
         $this->username = $username;
         $this->password = $password;
+    }
+
+    /**
+     * Get the id of a user.
+     *
+     * @return int The id of a user.
+     */
+    public function getId(): int {
+        return $this->id;
+    }
+
+    /**
+     * Set the id of a user.
+     *
+     * @param int $id The username of the user to change.
+     */
+    public function setId(int $id) {
+        $this->id = $id;
     }
 
     /**

@@ -9,22 +9,45 @@
 
 /**
  * A Configuration class. Represent a key / value pair with just a couple key (string) and value.
+ * Contains also a unique id.
  *
  * Used for save the number of news in a page of the website.
  */
 class Configuration {
+    private $id;
     private $key;
     private $value;
 
     /**
      * Create a configuration.
      *
+     * @param $id int The id of the configuration.
      * @param $key string The key of the configuration.
      * @param $value int The value of the configuration.
      */
-    public function __construct(string $key, int $value) {
+    public function __construct(int $id, string $key, int $value) {
+        $this->id = $id;
         $this->key = $key;
         $this->value = $value;
+    }
+
+    /**
+     * Get the id of the configuration.
+     *
+     * @return int The id of the configuration.
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the id of the configuration.
+     *
+     * @param int $id The id to set on the configuration.
+     */
+    private function setId(int $id) {
+        $this->id = $id;
     }
 
     /**

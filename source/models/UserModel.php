@@ -11,8 +11,7 @@ class UserModel {
     public function getUser(string $username) : ?User {
         $results = $this->gateway->get($username);
         if (!empty($results)) {
-            $user = new User($results[0]['username'], $results[0]['password']);
-            return $user;
+            return new User($results[0]['idUser'], $results[0]['username'], $results[0]['password']);
         }
         return null;
     }

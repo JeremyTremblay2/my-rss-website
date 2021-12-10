@@ -14,7 +14,6 @@
  * the rss feed in which they come.
  */
 class News {
-
     private $id;
     private $idRssFeed;
     private $title;

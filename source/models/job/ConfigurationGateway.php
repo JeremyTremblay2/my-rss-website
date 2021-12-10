@@ -31,17 +31,17 @@ class ConfigurationGateway {
      *
      * @param string $key The key of the configuration that will be get retrieve.
      * @return array Returns an array or null if the request fails.
+     * @throws PDOException If the request fails.
      */
     public function get(string $key) : ?array {
-        $query = 'SELECT valuep FROM configuration WHERE keyp = :key';
+        $query = 'SELECT * FROM configuration WHERE keyp = :key';
         $success = $this->connection->executeQuery($query, array(
             ':key' => array($key, PDO::PARAM_STR)
         ));
         if ($success) {
-            $results = $this->connection->getResults();
-            return $results;
+            return $this->connection->getResults();
         }
-        return null;
+        throw new PDOException("Impossible d'éxécuter la requête de récupération de configuration.", 910);
     }
 
     /**
@@ -49,13 +49,17 @@ class ConfigurationGateway {
      *
      * @param string $key The key of the configuration that will be inserted.
      * @param int $value The value of the configuration that will be inserted.
+     * @throws PDOException If the request fails.
      */
     public function insert(string $key, int $value) {
-        $query = 'INSERT INTO configuration VALUES(:key, :value)';
-        $this->connection->executeQuery($query, array(
+        $query = 'INSERT INTO configuration VALUES(NULL, :key, :value)';
+        $success = $this->connection->executeQuery($query, array(
             ':key' => array($key, PDO::PARAM_STR),
             ':value' => array($value, PDO::PARAM_INT)
         ));
+        if (!$success) {
+            throw new PDOException("Impossible d'éxécuter la requête d'insertion d'une configuration dans la base", 911);
+        }
     }
 
     /**
@@ -63,24 +67,32 @@ class ConfigurationGateway {
      *
      * @param string $key The key of the configuration.
      * @param int $value The value of the configuration to update.
+     * @throws PDOException If the request fails.
      */
     public function update(string $key, int $value) {
         $query = 'UPDATE configuration SET valuep = :value WHERE keyp = :key';
-        $this->connection->executeQuery($query, array(
+        $success = $this->connection->executeQuery($query, array(
             ':key' => array($key, PDO::PARAM_STR),
             ':value' => array($value, PDO::PARAM_INT)
         ));
+        if (!$success) {
+            throw new PDOException("Impossible d'éxécuter la requête de modification d'une configuration dans la base", 912);
+        }
     }
 
     /**
      * Delete a configuration from its key.
      *
      * @param string $key The key of the configuration to delete.
+     * @throws PDOException If the request fails.
      */
     public function delete(string $key) {
         $query = 'DELETE FROM configuration WHERE keyp = :key';
-        $this->connection->executeQuery($query, array(
+        $success = $this->connection->executeQuery($query, array(
             ':key' => array($key, PDO::PARAM_STR)
         ));
+        if (!$success) {
+            throw new PDOException("Impossible d'éxécuter la requête de suppression d'une configuration dans la base", 913);
+        }
     }
 }

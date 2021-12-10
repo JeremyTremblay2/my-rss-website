@@ -13,7 +13,6 @@
  * RssFeed have a name, a link to the stream, a unique id, and an update date.
  */
 class RssFeed {
-
     private $name;
     private $link;
     private $updateDate;

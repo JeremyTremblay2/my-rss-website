@@ -12,9 +12,8 @@ class RssFeedModel {
         $results = $this->gateway->findByIndex($id);
 
         if (!empty($results)) {
-            $rssFeed = new RssFeed($results[0]['streamId'], $results[0]['name'],
+            return new RssFeed($results[0]['streamId'], $results[0]['name'],
                 $results[0]['link'], $results[0]['updateDate']);
-            return $rssFeed;
         }
         return null;
     }

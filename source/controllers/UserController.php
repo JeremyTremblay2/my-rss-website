@@ -54,13 +54,15 @@ class UserController
         $configurationModel = new ConfigurationModel(new Connection($dsn, $login, $password));
 
         $numberOfNews = $newsModel->getNumberOfNews();
-        $numberOfNewsPerPage = $configurationModel->getConfiguration('numberOfNewsPerPage')->getValue();
+        $numberOfNewsPerPage = $configurationModel->getConfiguration('numberOfNewsPerPage');
 
         // Shouldn't happen
-        if ($numberOfNewsPerPage == null or $numberOfNewsPerPage <= 0) {
+        if ($numberOfNewsPerPage == null or $numberOfNewsPerPage->getValue() <= 0) {
             $configurationModel->insertConfiguration('numberOfNewsPerPage', 10);
             $numberOfNewsPerPage = 10;
         }
+
+        $numberOfNewsPerPage = $numberOfNewsPerPage->getValue();
 
         $numberOfPages = (int) ($numberOfNews / $numberOfNewsPerPage);
         if ($numberOfPages % $numberOfNewsPerPage != 0) {

@@ -29,6 +29,7 @@ class UserGateway {
      *
      * @param string $username The id of the User that will be get retrieve.
      * @return array Returns an array of results or null if the request fails.
+     * @throws PDOException If the request fails.
      */
     public function get(string $username) : ?array {
         $query = 'SELECT * FROM user WHERE username = :username';
@@ -39,7 +40,7 @@ class UserGateway {
             $results = $this->connection->getResults();
             return $results;
         }
-        return null;
+        throw new PDOException("Impossible d'executer la commande de récupération d'utilisateur depuis la base.", 914);
     }
 
     /**
@@ -47,12 +48,16 @@ class UserGateway {
      *
      * @param string $username The username of the User that will be inserted.
      * @param string $password The password of the User that will be inserted.
+     * @throws PDOException If the request fails.
      */
     public function insert(string $username, string $password) {
         $query = 'INSERT INTO user VALUES(:username, :password)';
-        $this->connection->executeQuery($query, array(
+        $success = $this->connection->executeQuery($query, array(
             ':username' => array($username, PDO::PARAM_STR),
             ':password' => array($password, PDO::PARAM_STR)
         ));
+        if (!$success) {
+            throw new PDOException("Impossible d'insérer un utilisateur dans la base.", 915);
+        }
     }
 }

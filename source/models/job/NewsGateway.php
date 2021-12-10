@@ -29,39 +29,47 @@ class NewsGateway {
      * Delete a news from its id.
      *
      * @param int $id The id of the news that will be deleted.
+     * @throws PDOException If the request fails.
      */
     public function delete(int $id) {
         $query = "DELETE FROM news WHERE id = :id";
-        $this->connection->executeQuery($query, array(
+        $success = $this->connection->executeQuery($query, array(
             ':id' => array($id, PDO::PARAM_INT)
         ));
+        if (!$success) {
+            throw new PDOException("Impossible de supprimer une news de la base.", 909);
+        }
     }
 
     /**
      * Insert a news in the database.
      *
-     * @param int $id The id of the news that will be inserted.
      * @param int $idRssFeed The id of the rss feed in which the news comes.
      * @param string $title The title of the news that will be inserted.
      * @param string $link The link of the news that will be inserted.
      * @param string $description The description of the news that will be inserted.
      * @param string $publicationDate The publication date of the news that will be inserted.
+     * @throws PDOException If the request fails.
      */
     public function insert(int $idRssFeed, string $title, string $link, string $description, string $publicationDate) {
         $query = 'INSERT INTO news VALUES(NULL, :idRssFeed, :title, :link, :description, :publicationDate)';
-        $this->connection->executeQuery($query, array(
+        $success = $this->connection->executeQuery($query, array(
             ':idRssFeed' => array($idRssFeed, PDO::PARAM_INT),
             ':title' => array($title, PDO::PARAM_STR),
             ':link' => array($link, PDO::PARAM_STR),
             ':description' => array($description, PDO::PARAM_STR),
             ':publicationDate' => array($publicationDate, PDO::PARAM_STR)
         ));
+        if (!$success) {
+            throw new PDOException("Impossible d'insérer une news dans la base.", 909);
+        }
     }
 
     /**
      * Find all the news in the database.
      *
      * @return array An array of results or null if the request fail.
+     * @throws PDOException If the request fails.
      */
     public function findAllNews() : ?array {
         $query = 'SELECT * FROM news ORDER BY publicationDate DESC';
@@ -70,7 +78,7 @@ class NewsGateway {
             $results = $this->connection->getResults();
             return $results;
         }
-        return null;
+        throw new PDOException("Impossible d'exécuter la commande de récupération de toutes les news dans la base.", 905);
     }
 
     /**
@@ -79,6 +87,7 @@ class NewsGateway {
      * @param int $limit The maximum number of news to find.
      * @param int $offset The offset of the news to recovered in the database from the beginning.
      * @return array Returns an array of data or null if the request fails.
+     * @throws PDOException If the request fails.
      */
     public function findInRange(int $limit, int $offset) : ?array {
         $query = 'SELECT * FROM news ORDER BY publicationDate DESC LIMIT :limit OFFSET :offset';
@@ -91,7 +100,7 @@ class NewsGateway {
             $results = $this->connection->getResults();
             return $results;
         }
-        return null;
+        throw new PDOException("Impossible d'exécuter la commande de récupération des news par rayon dans la base.", 906);
     }
 
     /**
@@ -99,6 +108,7 @@ class NewsGateway {
      *
      * @param int $idRssFeed The id of the feed
      * @return array An array of news or null if the request fails.
+     * @throws PDOException If the request fails.
      */
     public function findByStream(int $idRssFeed) : ?array {
         $query = 'SELECT * FROM news WHERE streamIdf = :idRssFeed ORDER BY publicationDate DESC';
@@ -109,13 +119,14 @@ class NewsGateway {
             $results = $this->connection->getResults();
             return $results;
         }
-        return null;
+        throw new PDOException("Impossible d'exécuter la commande de récupération des news du flux dans la base.", 907);
     }
 
     /**
      * Count the number of news in the database.
      *
      * @return array An array of results or null if the request fails.
+     * @throws PDOException If the request fails.
      */
     public function numberOfNews() : ?array {
         $query = 'SELECT COUNT(*) FROM news';
@@ -124,6 +135,6 @@ class NewsGateway {
             $results = $this->connection->getResults();
             return $results;
         }
-        return null;
+        throw new PDOException("Impossible d'exécuter la commande de récupération du nombre de news dans la base.", 908);
     }
 }
