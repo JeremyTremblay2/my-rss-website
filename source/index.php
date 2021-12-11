@@ -6,11 +6,13 @@
 * Authors : Maxime GRANET, Jérémy TREMBLAY
 */
 
+session_start();
+
 require_once(__DIR__ . '/config/config.php');
 require_once(__DIR__.'/config/Autoload.php');
 Autoload::charger();
 
-require_once('controllers/UserController.php');
+require_once('controllers/FrontController.php');
 
-$controller = new UserController();
+new FrontController();
 ?>

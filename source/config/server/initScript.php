@@ -38,7 +38,7 @@ if ($results == null) {
 }
 $results = $configurationModel->getConfiguration('numberOfNewsPerPage');
 if ($results == null) {
-    $configurationModel->insertConfiguration('numberOfNewsPerPage', 12);
+    $configurationModel->insertConfiguration('numberOfNewsPerPage', Constants::DEFAULT_NUMBER_OF_NEWS);
 }
 
 // If no streams are in the database, we insert the default streams.

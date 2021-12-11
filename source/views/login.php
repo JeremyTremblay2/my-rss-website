@@ -31,12 +31,12 @@
                         <input type=password name="password" class="field-long" placeholder="mot de passe">
                         <input class="validation" type="submit" value="Envoyer">
                         <?php
-                        if (isset($errorViews) && count($errorViews)>0) {
+                        if (isset($errorView) && count($errorView)>0) {
                             echo "<div class='error'>";
                             echo "<h2>ERREUR !!!!!</h2>";
 
                             echo "<div class='txt'>";
-                            foreach ($errorViews as $error) {
+                            foreach ($errorView as $error) {
                                 echo $error . "<br />";
                             }
                             echo "</div></div>";

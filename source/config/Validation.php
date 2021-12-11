@@ -30,18 +30,18 @@ class Validation {
 
     static function int($val, string $inputName) {
         if (empty($val)) {
-            self::throwError(Constants::EMPTY_ERROR . " " . $inputName, 900);
+            self::throwError(Constants::EMPTY_ERROR . " " . $inputName, 924);
         }
         if (!is_numeric($val)) {
             var_dump($inputName);
-            self::throwError(Constants::INCORRECT_ERROR . " " . $inputName, 901);
+            self::throwError(Constants::INCORRECT_ERROR . " " . $inputName, 925);
         }
         if ($val != filter_var($val, FILTER_VALIDATE_INT)) {
-            self::throwError(Constants::INCORRECT_ERROR . " " . $inputName, 901);
+            self::throwError(Constants::INCORRECT_ERROR . " " . $inputName, 926);
         }
     }
 
-    static function cleanInput(string $data): string {
+    static function cleanInput(?string $data): ?string {
         if ($data != null) {
             $data = trim($data);
             $data = stripslashes($data);

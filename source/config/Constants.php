@@ -5,4 +5,7 @@ class Constants {
     const INCORRECT_ERROR = 'Chaine de caractères non valide dans le champ';
     const EMPTY_ERROR = 'Veuillez renseigner le champ';
     const INJECTION_ERROR = 'Tentative d\'injection de code déjouée sur le champ';
+    const PDO_ERROR = 'Erreur innatendue lors de l\'accès à la base de données.';
+    const GENERAL_ERROR = 'Erreur innatendue dans le traitement de votre requête. Informations complémentaires :';
+    const DEFAULT_NUMBER_OF_NEWS = 12;
 }

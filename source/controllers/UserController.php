@@ -2,8 +2,8 @@
 
 //classe config static/singleton => construct => param clé
 
-class UserController
-{
+class UserController {
+
     public function __construct() {
         global $localPath, $views;
         $errorView = array();
@@ -12,6 +12,7 @@ class UserController
             $action = $_REQUEST['action'] ?? null;
             if ($action != null) {
                 $action = Validation::cleanInput($action);
+                Validation::str($action, "action");
             }
 
             switch($action){
@@ -25,9 +26,6 @@ class UserController
                 case "connectionClick":
                     $this->connectionClicked();
                     break;
-                case "valider":
-                    $this->valider();
-                    break;
                 default:
                     $errorView[] = "Erreur lors de l'appel PHP.";
                     require($localPath . $views["error"]);
@@ -35,12 +33,11 @@ class UserController
             }
         }
         catch(PDOException $e) {
-            $errorView[] = 'Erreur innatendue lors de l\'accès à la base de données.' . $e->getMessage();
+            $errorView[] = Constants::PDO_ERROR . $e->getMessage();
             require($localPath . $views["error"]);
         }
         catch (Exception $e){
-            $errorView[] = 'Erreur innatendue dans le traitement de votre requête. Informations complémentaires : ' .
-                $e->getMessage();
+            $errorView[] = Constants::GENERAL_ERROR . $e->getMessage();
             require($localPath . $views["error"]);
         }
     }
@@ -67,13 +64,13 @@ class UserController
 
         // Shouldn't happen
         if ($numberOfNewsPerPage == null) {
-            $configurationModel->insertConfiguration('numberOfNewsPerPage', 9);
-            $numberOfNewsPerPage = 9;
+            $configurationModel->insertConfiguration('numberOfNewsPerPage', Constants::DEFAULT_NUMBER_OF_NEWS);
+            $numberOfNewsPerPage = Constants::DEFAULT_NUMBER_OF_NEWS;
         }
         // Shouldn't happen
         else if ($numberOfNewsPerPage->getValue() <= 0) {
-            $configurationModel->updateConfiguration("numberOfNewsPerPage", 9);
-            $numberOfNewsPerPage = 9;
+            $configurationModel->updateConfiguration("numberOfNewsPerPage", Constants::DEFAULT_NUMBER_OF_NEWS);
+            $numberOfNewsPerPage = Constants::DEFAULT_NUMBER_OF_NEWS;
         }
         else {
             $numberOfNewsPerPage = $numberOfNewsPerPage->getValue();
@@ -103,12 +100,19 @@ class UserController
 
     private function connection() {
         global $localPath, $views;
-        require ($localPath . $views['auth']);
+        $adminModel = new AdminModel();
+        $admin = $adminModel->isAdmin();
+        if ($admin == null) {
+            require ($localPath . $views['auth']);
+        }
+        else {
+            require ($localPath . $views['admin']);
+        }
     }
 
     private function connectionClicked() {
         global $localPath, $views;
-        $errorViews = [];
+        $errorView = [];
 
         $username = $_POST['name'] ?? null;
         $password = $_POST['password'] ?? null;
@@ -120,14 +124,14 @@ class UserController
             Validation::str($username, "pseudo");
         }
         catch (UserValidationException $e) {
-            $errorViews[] = $e->getMessage();
+            $errorView[] = $e->getMessage();
         }
 
         try {
             Validation::str($password, "mot de passe");
         }
         catch (UserValidationException $e) {
-            $errorViews[] = $e->getMessage();
+            $errorView[] = $e->getMessage();
         }
 
         $viewData = array(
@@ -135,30 +139,14 @@ class UserController
             'password' => $password
         );
 
-        if (count($errorViews) == 0) {
-            $userModel = new UserModel();
-            $user = $userModel->getUser($username);
-
-            if ($user == null) {
-                $errorViews[] = "Le nom d'utilisateur spécifié n'existe pas.";
-            }
-            else {
-                if (password_verify($password, $user->getPassword())) {
-                    require($localPath . $views['admin']);
-                }
-                else {
-                    $errorViews[] = "Le couple nom d'utilisateur / mot de passe est incorrect.";
-                }
-            }
+        if (count($errorView) == 0) {
+            $adminModel = new AdminModel();
+            $adminModel->connection($username, $password, $errorView);
         }
 
-        if(count($errorViews) != 0) {
+        if (count($errorView) != 0) {
             require($localPath . $views['auth']);
         }
-    }
-
-    private function valider(){
-
     }
 }
 ?>
