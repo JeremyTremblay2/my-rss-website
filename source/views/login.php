@@ -8,22 +8,19 @@
     </head>
     <body>
     <?php
-    $viewData = array(
+    if (!isset($viewData)) {
+        $viewData = array(
             'username' => "",
-            'password' => "",
-            'data'=>"",
+            'password' => ""
         );
-    if (isset($viewData)) {
-
-        ?>
+    }
+    ?>
         <header>
             <img src="views/ressources/images/RSS-logo.png"/>
             <h1>My RSS Website</h1>
 
             <button><a class="button" href="?action=home">Accueil</a></button>
         </header>
-
-                <?= $viewData['data']  ?>
         <section>
             <div class="formulaire">
                 <h1>Connexion</h1>
@@ -31,7 +28,7 @@
                         <label>pseudo :</label>
                         <input type=text pattern="[a-zA-Z0-9\d@$!%*_-#?&]+" value="<?= $viewData['username'] ?>" name="name" class="field-long" placeholder="pseudo" VALUE=<?=$viewData['username']?>>
                         <label>mot de passe :</label>
-                        <input type=password pattern="[a-zA-Z0-9]+" name="password" class="field-long" placeholder="mot de passe">
+                        <input type=password name="password" class="field-long" placeholder="mot de passe">
                         <input class="validation" type="submit" value="Envoyer">
                         <?php
                         if (isset($errorViews) && count($errorViews)>0) {
@@ -48,8 +45,5 @@
                 </form>
             </div>
         </section>
-    <?php
-        }
-    ?>
     </body>
 </html>

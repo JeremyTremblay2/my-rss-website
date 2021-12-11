@@ -1,38 +1,24 @@
 <?php
 
-require_once('config/config.php');
-require_once('models/job/Connection.php');
-require_once('models/job/User.php');
-require_once('models/job/UserGateway.php');
-require_once('models/UserModel.php');
-require_once('models/job/Configuration.php');
-require_once('models/job/ConfigurationGateway.php');
-require_once('models/ConfigurationModel.php');
-require_once('models/job/RssFeed.php');
-require_once('models/job/RssFeedGateway.php');
-require_once('models/RssFeedModel.php');
-require_once('models/job/News.php');
-require_once('models/job/NewsGateway.php');
-require_once('models/NewsModel.php');
+require_once('../config.php');
+require_once('../Autoload.php');
+Autoload::charger();
 
 if (!(isset($login) and isset($password) and isset($dsn))) {
     throw new Exception("Impossible de se connecter à la base de données, arrêt du script.");
 }
 
 // We load our Models.
-$connection = new Connection($dsn, $login, $password);
-$userModel = new UserModel($connection);
-$configurationModel = new ConfigurationModel($connection);
-$newsModel = new NewsModel($connection);
-$rssFeedModel = new RssFeedModel($connection);
+$userModel = new UserModel();
+$configurationModel = new ConfigurationModel();
+$newsModel = new NewsModel();
+$rssFeedModel = new RssFeedModel();
 
 // A past date.
 $date = strftime("%Y-%m-%d %H:%M:%S", strtotime('4 december 2000'));
 
 //Rss Feeds from the website 'Le Monde'
 $rssFeedArray = array(
-    array('A la Une', 'https://www.lemonde.fr/rss/une.xml', $date),
-    array('International', 'https://www.lemonde.fr/international/rss_full.xml', $date),
     array('Politique', 'https://www.lemonde.fr/politique/rss_full.xml', $date),
     array('Economie', 'https://www.lemonde.fr/economie/rss_full.xml', $date),
     array('Culture', 'https://www.lemonde.fr/culture/rss_full.xml', $date),
@@ -52,7 +38,7 @@ if ($results == null) {
 }
 $results = $configurationModel->getConfiguration('numberOfNewsPerPage');
 if ($results == null) {
-    $configurationModel->insertConfiguration('numberOfNewsPerPage', 10);
+    $configurationModel->insertConfiguration('numberOfNewsPerPage', 12);
 }
 
 // If no streams are in the database, we insert the default streams.

@@ -1,11 +1,11 @@
 <?php
 
 class ConfigurationModel {
-
     private $gateway;
 
-    public function __construct(Connection $connection) {
-        $this->gateway = new ConfigurationGateway($connection);
+    public function __construct() {
+        global $dsn, $login, $password;
+        $this->gateway = new ConfigurationGateway(new Connection($dsn, $login, $password));
     }
 
     public function getConfiguration(string $key) : ?Configuration {

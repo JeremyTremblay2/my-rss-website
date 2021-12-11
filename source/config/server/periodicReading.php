@@ -2,15 +2,15 @@
 
 require_once('../config.php');
 require_once('../Autoload.php');
-Autoload::charger();
+//Autoload::charger();
 
 // Connection and instantiations.
 if (!(isset($login) and isset($password) and isset($dsn))) {
     throw new Exception("Impossible de se connecter à la base de données, arrêt du script.");
 }
-$connection = new Connection($dsn, $login, $password);
-$newsModel = new NewsModel($connection);
-$rssFeedModel = new RssFeedModel($connection);
+
+$newsModel = new NewsModel();
+$rssFeedModel = new RssFeedModel();
 $parser = new Parser();
 
 // The current time.

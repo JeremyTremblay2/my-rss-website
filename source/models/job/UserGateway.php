@@ -51,7 +51,7 @@ class UserGateway {
      * @throws PDOException If the request fails.
      */
     public function insert(string $username, string $password) {
-        $query = 'INSERT INTO user VALUES(:username, :password)';
+        $query = 'INSERT INTO user VALUES(NULL, :username, :password)';
         $success = $this->connection->executeQuery($query, array(
             ':username' => array($username, PDO::PARAM_STR),
             ':password' => array($password, PDO::PARAM_STR)

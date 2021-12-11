@@ -1,11 +1,11 @@
 <?php
 
 class NewsModel {
-
     private $gateway;
 
-    public function __construct(Connection $connection) {
-        $this->gateway = new NewsGateway($connection);
+    public function __construct() {
+        global $dsn, $login, $password;
+        $this->gateway = new NewsGateway(new Connection($dsn, $login, $password));
     }
 
     public function deleteNews(int $id): void {

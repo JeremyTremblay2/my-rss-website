@@ -1,11 +1,11 @@
 <?php
 
 class UserModel {
-
     private $gateway;
 
-    public function __construct(Connection $connection) {
-        $this->gateway = new UserGateway($connection);
+    public function __construct() {
+        global $dsn, $login, $password;
+        $this->gateway = new UserGateway(new Connection($dsn, $login, $password));
     }
 
     public function getUser(string $username) : ?User {

@@ -40,11 +40,45 @@ else {
                 echo "</div>";
                 echo "</article>";
                 echo "<footer>";
-                if (isset($numberOfPages)) {
-                    for ($i = 1; $i <= $numberOfPages; $i++) {
-                        echo "<a href='views/newsList.php?page='" . $i . ">" . $i . "</a> ";
+                if (isset($numberOfPages) && isset($currentPage)) {
+                    if ($currentPage == 1) {
+                        echo " <strong>$currentPage</strong>&nbsp;";
+                        if ($currentPage < $numberOfPages) {
+                            if ($currentPage < ($numberOfPages - 1)) {
+                                $pageAfter = $currentPage + 1;
+                                echo "<a href=?page=$pageAfter>" . '&gt;' . "</a>";
+                            }
+                            echo "<a href=?page=$numberOfPages>" . $numberOfPages . "</a>";
+                        }
                     }
-                }echo "</footer>";
+                    else {
+                        echo "<a href='?page=1'>1</a>";
+                        if ($currentPage == 2) {
+                            echo " <strong>$currentPage</strong>&nbsp;";
+                            if ($currentPage < $numberOfPages) {
+                                if ($currentPage < ($numberOfPages - 1)) {
+                                    $pageAfter = $currentPage + 1;
+                                    echo "<a href=?page=$pageAfter>" . '&gt;' . "</a>";
+                                }
+                                echo "<a href=?page=$numberOfPages>" . $numberOfPages . "</a>";
+                            }
+                        }
+                        else if ($currentPage > 2) {
+                            $pageBefore = $currentPage - 1;
+                            echo "<a href=?page=$pageBefore>" . '&lt;' . "</a> ";
+                            echo " <strong>$currentPage</strong>&nbsp;";
+                            if ($currentPage < ($numberOfPages - 1)) {
+                                $pageAfter = $currentPage + 1;
+                                echo "<a href=?page=$pageAfter>" . '&gt;' . "</a>";
+                                echo "<a href=?page=$numberOfPages>" . $numberOfPages . "</a>";
+                            }
+                            else if ($currentPage < $numberOfPages) {
+                                echo "<a href=?page=$numberOfPages>" . $numberOfPages . "</a>";
+                            }
+                        }
+                    }
+                }
+                echo "</footer>";
     }
             ?>
     </body>

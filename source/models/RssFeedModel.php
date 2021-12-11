@@ -1,11 +1,11 @@
 <?php
 
 class RssFeedModel {
-
     private $gateway;
 
-    public function __construct(Connection $connection) {
-        $this->gateway = new RssFeedGateway($connection);
+    public function __construct() {
+        global $dsn, $login, $password;
+        $this->gateway = new RssFeedGateway(new Connection($dsn, $login, $password));
     }
 
     public function getRssFeed(int $id) : ?RssFeed {

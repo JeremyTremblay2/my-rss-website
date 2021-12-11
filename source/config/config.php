@@ -20,7 +20,3 @@ $views['error'] = 'views/error.php';
 $views['news'] = 'views/newsList.php';
 $views['auth'] = 'views/login.php';
 $views['admin'] = 'views/admin.php';
-$parser['parser'] = 'parser/parser.php';
-
-//Global variables
-$numberOfPages = 1;
