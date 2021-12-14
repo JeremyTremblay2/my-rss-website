@@ -3,7 +3,7 @@ body{
     background-repeat: repeat-x;
     width: 100vh;
     height: 100vh;*/
-    background-image: linear-gradient(to bottom,#346291e0,lightgrey );
+    background-image: linear-gradient(to bottom,#e0cc91,lightgrey );
     background-repeat: repeat-x;
     min-height: 98vh;
 }
@@ -23,19 +23,21 @@ header img{
 header h1 {
     text-decoration: none;
     justify-content: center;
-    color: white;
+    color: #653b0e;
 }
 
 header button{
-    transition: 1s;
+    transition: 0.5s;
     border:2px solid rgb(167, 89, 17);
     border-radius: 12px;
     height: 30px;
+    width : 10%;
+    min-width: 100px;
     margin: 0 10px 0 0;
 }
 
 header button a.button{
-    transition: 1s;
+    transition: 0.5s;
     background-color: transparent;
     text-decoration: none;
     color: rgb(167, 89, 17);
@@ -43,25 +45,26 @@ header button a.button{
 }
 
 header button:hover{
-    transition: 1s;
+    transition: 0.5s;
     background-color: rgb(167, 89, 17);
 }
 
 header button:hover > a{
-    transition: 1s;
+    transition: 0.5s;
+    font-weight: bold;
     color: white;
 }
 
 /*Formulaires */
 
 input.validation{
-    border: black solid 1px;
+    border: none;
     border-radius: 12px;
     text-decoration: none;
     justify-content: center;
     text-align: center;
     width: 100%;
-    height: 30px;
+    height: 40px;
     min-width: 200px;
     color:black;
     margin: 15px 0 0 0;
@@ -87,18 +90,19 @@ section{
 section .formulaire{
     display: flex;
     flex-direction: column;
-    width: 20%;
-    min-width:300px;
+    width: 30%;
+    min-width:350px;
     justify-content: center;
     border: 1px solid grey;
     border-radius: 12px;
     padding: 3% 6%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.6);
 }
 
-section .formulaire h1{
+section .formulaire h1, section .formulaire label{
     color:white;
 }
+
 
 section .formulaireAdmin{
     display: flex;
@@ -308,18 +312,32 @@ button.add:hover{
     justify-content: center;
 }
 
+.row a{
+    transition: 0.5s;
+    min-width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.row a:hover{
+    transition: 0.5s;
+    color: black;
+    font-weight: bold;
+}
+
 .col-md-3{
     display: flex;
     flex-direction: column;
     border: gray solid 2px;
     border-radius: 12px;
     margin: 10px;
-    background-image: linear-gradient(45deg,#d93713, white);
+    background-image: linear-gradient(45deg,#516a15, #3d470e);
 }
 
-.col-md-3:focus{
-    color : darkblue;
-    background-image: linear-gradient(45deg,cyan, white);
+.col-md-3:hover{
+    background-image: linear-gradient(45deg,#81aa22, #91aa22);
     animation-name: pannel;
     position: relative;
     animation-duration: 1s;
@@ -347,8 +365,8 @@ article a{
     color: black;
 }
 
-article a:hover{
-
+a:hover{
+    color: black;
 }
 
 .flux li{
@@ -369,7 +387,6 @@ p.dateP{
     position: relative;
     font-size: small;
     font-family: "Times New Roman";
-    justify-content: flex-end;
     margin-top: auto;
 }
 ul.flux li.descr{
@@ -397,4 +414,3 @@ footer a{
 footer a:hover{
     text-decoration: blue underline;
 }
-

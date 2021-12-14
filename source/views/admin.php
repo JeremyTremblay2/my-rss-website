@@ -3,7 +3,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <link type="text/css" rel="stylesheet" href="views/css/stylesheet1.css">
+        <link type="text/css" rel="stylesheet" href="views/css/RSS.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
         <title>My RSS Website</title>
@@ -35,6 +35,9 @@
             <h1>Liste des flux :</h1>
             <table>
                 <?php
+                $rssFeedModel = new RssFeedModel();
+                $numberOfRssFeed = $rssFeedModel->getNumberOfRssFeeds();
+                $viewData = $rssFeedModel->getAllRssFeed();
                 if (isset($viewData) && isset($numberOfRssFeed)) {
                     echo '<tr class="row">';
                     echo '<th class="col-3">Nom</th>';
@@ -59,12 +62,11 @@
                 ?>
             </table>
             <h3>Ajouter un flux</h3>
-            <div class="row1">
-                    <input class="col-3" type="text" placeholder="Nom">
-                    <input class="col-5" type="url" placeholder="Url">
-                    <input class="col-2" type="date" placeholder="Date">
-                    <button class="add">Ajouter</button>
-            </div>
+            <form class="row1" action="?action=addRssFeed">
+                    <input class="col-3" type="name" placeholder="Nom">
+                    <input class="col-6" type="url" placeholder="Url">
+                    <input type="submit" class="add" value="Ajouter">
+            </form>
         </article>
     </body>
 </html>

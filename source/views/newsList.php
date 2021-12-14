@@ -11,7 +11,7 @@ else {
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="views/css/stylesheet1.css">
+    <link type="text/css" rel="stylesheet" href="views/css/RSS.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>My RSS Website</title>
@@ -30,8 +30,18 @@ else {
                     foreach ($viewData as $news) {
                         echo "<a href='" . $news->getLink() . "' class='col-md-3'>";
                         echo "<ul class='flux'>";
-                        echo "<li class='title'>" . $news->getTitle() . "</li>";
-                        echo "<li class='descr'>" . $news->getDescription() . "</li>";
+                        $title = $news->getTitle();
+                        $length = 70;
+                        if(strlen($title)>$length) {
+                            $title = substr($title, 0, $length) . " ...";
+                        }
+                        echo "<li class='title'>" . $title  . "</li>";
+                        $descr = $news->getDescription();
+                        $lengthDescr = 200;
+                        if(strlen($descr)>$lengthDescr) {
+                            $descr = substr($descr, 0, $lengthDescr) . " ...";
+                        }
+                        echo "<li class='descr'>" . $descr . "</li>";
                         echo "</ul>";
                         echo "<p class='dateP'>" . $news->getPublicationDate() . '</p>';
                         echo "</a>";
