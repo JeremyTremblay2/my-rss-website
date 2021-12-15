@@ -11,7 +11,7 @@ class Parser {
 
     public function setPath(string $path): void {
         $this->path = $path;
-        $this->stream = simplexml_load_file($path);
+        $this->stream = simplexml_load_file($path, 'SimpleXMLElement', LIBXML_NOCDATA | LIBXML_COMPACT | LIBXML_NOWARNING);
     }
 
     public function getResults() {
@@ -19,8 +19,8 @@ class Parser {
     }
 
     public function parse(string $publicationDate): array {
-        if ($this->stream == null) {
-            throw new Exception("Aucun lien de flux RSS n'a été fourni, impossible de parser.");
+        if (false === $this->stream) {
+            throw new ParseError("Impossible de parser le flux RSS, il est incorrect ou non-reconnu.");
         }
         $this->results = array();
         foreach ($this->stream->channel->item as $item) {

@@ -19,14 +19,16 @@
         <a class="accueil" href="?action=home"><-Accueil</a>
         <section>
             <div class="formulaireAdmin">
-                <label>Nombre de ligne par page :</label>
+                <label>Nombre de news affichées par page :</label>
                 <form class="admin" name="myForm"  method="post" action="?action=changeNumberOfNews">
                     <input type=number pattern="[0-9]+" name="numberPerPage" class="field-long" placeholder="number">
                     <input class="submit" type="submit" value="OK">
                 </form>
                 <?php
-                if(isset($tabErr)){
-                    echo "<p>{$tabErr}</p>";
+                if(isset($errorView)){
+                    foreach ($errorView as $error) {
+                        echo "<b>$error</b>";
+                    }
                 }
                 ?>
             </div>
@@ -35,26 +37,23 @@
             <h1>Liste des flux :</h1>
             <table>
                 <?php
-                $rssFeedModel = new RssFeedModel();
-                $numberOfRssFeed = $rssFeedModel->getNumberOfRssFeeds();
-                $viewData = $rssFeedModel->getAllRssFeed();
                 if (isset($viewData) && isset($numberOfRssFeed)) {
                     echo '<tr class="row">';
-                    echo '<th class="col-3">Nom</th>';
+                    echo '<th class="col-2">Nom</th>';
                     echo '<th class="col-5">Lien du flux</th>';
-                    echo '<th class="col-2">Date de dernière modification</th>';
-                    echo '<th class="col-2">Supprimer</th>';
+                    echo '<th class="col-3">Date de dernière mise à jour</th>';
+                    echo '<th class="col-1">Supprimer</th>';
+                    echo '<th class="col-1">Rafraîchir</th>';
                     echo '</tr>';
 
                     for ($i = 0; $i < $numberOfRssFeed; $i++) {
                         echo '<tr class="row">';
-                        echo "<th class='col-3'>" . $viewData[$i]->getName() . "</th>";
-                        echo "<th class=col-5>" . $viewData[$i]->getLink() . "</th>";
-                        echo "<th class=col-2>" . $viewData[$i]->getUpdateDate() . "</th>";
+                        echo "<th class='col-2'>" . $viewData[$i]->getName() . "</th>";
+                        echo "<th class=col-5><a href=" . $viewData[$i]->getLink() . ">" . $viewData[$i]->getLink() . "</a></th>";
+                        echo "<th class=col-3>" . $viewData[$i]->getUpdateDate() . "</th>";
                         $id = $viewData[$i]->getId();
-                        echo '<td class="col-2">';
-                        echo "<a class='sup' href=?action=deleteRssFeed&idStream=$id>" . 'X' . "</a>";
-                        echo '</td>';
+                        echo "<td class='col-1'><a class='sup' href=?action=deleteRssFeed&idStream=$id>" . 'X' . "</a></td>";
+                        echo "<td class='col-1'><a class='sup' href=?action=refreshRssFeed&idStream=$id>" . 'X' . "</a></td>";
                         echo '</tr>';
                     }
                 }

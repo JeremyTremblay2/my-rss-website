@@ -36,8 +36,8 @@ class UserController {
             $errorView[] = Constants::PDO_ERROR . $e->getMessage();
             require($localPath . $views["error"]);
         }
-        //throwable
-        catch (Exception $e){
+
+        catch (Throwable $e){
             $errorView[] = Constants::GENERAL_ERROR . $e->getMessage();
             require($localPath . $views["error"]);
         }
@@ -90,24 +90,15 @@ class UserController {
         require($localPath . $views['news']);
     }
 
-    private function reset() {
-        global $localPath, $views;
-        $dataView = array (
-            'pseudo' => "",
-            'password' => ""
-        );
-        require($localPath . $views['auth']);
-    }
-
     private function connection() {
         global $localPath, $views;
         $adminModel = new AdminModel();
         $admin = $adminModel->isAdmin();
         if ($admin == null) {
-            require ($localPath . $views['auth']);
+            require($localPath . $views['auth']);
         }
         else {
-            require ($localPath . $views['admin']);
+            header('Location: ?action=homeAdmin');
         }
     }
 
@@ -149,9 +140,8 @@ class UserController {
             }
             else {
                 if (password_verify($password, $user->getPassword())) {
-                    var_dump("dflkjglkdfsgldfslkghfh");
                     $userModel->connection($username);
-                    require($localPath . $views['admin']);
+                    header('Location: ?action=homeAdmin');
                 }
                 else {
                     $errorView[] = Constants::CONNECTION_ERROR;

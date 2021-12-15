@@ -10,12 +10,12 @@
 $localPath = __DIR__ . '/../';
 
 // Database configuration
-$login = 'jetremblay';
-$password = 'achanger';
-$databaseName = "dbjetremblay";
+$login = 'root';
+$password = '';
+$databaseName = "project";
 $dsn = 'mysql:dbname=' . $databaseName . ';host=localhost';
 // Files and views
-$views['index'] = '../index.php';
+$views['index'] = '';
 $views['error'] = 'views/error.php';
 $views['news'] = 'views/newsList.php';
 $views['auth'] = 'views/login.php';

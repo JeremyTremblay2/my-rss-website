@@ -19,6 +19,7 @@ class FrontController {
                 'changeNumberOfNews',
                 'addRssFeed',
                 'deleteRssFeed',
+                'refreshRssFeed',
                 'disconnection'
             )
         );
@@ -46,7 +47,7 @@ class FrontController {
             $errorView[] = Constants::PDO_ERROR . $e->getMessage();
             require($localPath . $views["error"]);
         }
-        catch (Exception $e){
+        catch (Throwable $e){
             $errorView[] = Constants::GENERAL_ERROR . $e->getMessage();
             require($localPath . $views["error"]);
         }

@@ -12,7 +12,6 @@ class AdminController {
                 $action = Validation::cleanInput($action);
                 Validation::str($action, "action");
             }
-            var_dump($action . "Je suis un admin");
 
             switch($action) {
                 case 'homeAdmin':
@@ -27,6 +26,9 @@ class AdminController {
                 case 'deleteRssFeed':
                     $this->deleteRssFeed();
                     break;
+                case 'refreshRssFeed':
+                    $this->refreshRssFeed();
+                    break;
                 case 'disconnection':
                     $this->disconnection();
                     break;
@@ -38,48 +40,53 @@ class AdminController {
         }
         catch(PDOException $e) {
             $errorView[] = Constants::PDO_ERROR . $e->getMessage();
-            require($localPath . $views["error"]);
+            require($localPath . ' ' . $views["error"]);
         }
-        catch (Exception $e){
+        catch (Throwable $e){
             $errorView[] = Constants::GENERAL_ERROR . $e->getMessage();
-            require($localPath . $views["error"]);
+            require($localPath . ' ' . $views["error"]);
         }
     }
 
     public function init() {
-        //Appel de cette fonction ?
-        global $localPath, $views;
+        global $localPath, $views, $errorView;
 
         $rssFeedModel = new RssFeedModel();
         $numberOfRssFeed = $rssFeedModel->getNumberOfRssFeeds();
         $viewData = $rssFeedModel->getAllRssFeed();
-        var_dump($viewData);
         require($localPath . $views['admin']);
     }
 
     public function modifyNumberNews() {
-        global $localPath, $views;
+        global $errorView;
         $errorView = [];
-        //var_dump($_REQUEST['numberPerPage']);
-        //var_dump($_REQUEST['action']);
-
         $configurationModel = new ConfigurationModel();
         $numberOfNews = $_REQUEST['numberPerPage'] ?? null;
         $numberOfNews = Validation::cleanInput($numberOfNews);
 
-        Validation::int($numberOfNews, "Nombre de news");
+        try {
+            Validation::int($numberOfNews, "Nombre de news");
+        }
+        catch (UserValidationException $e) {
+            $errorView[] = $e->getMessage();
+        }
 
         if ($numberOfNews <= 0) {
-            $errorView[] ="Veuillez entrer un nombre valide de news par page.";
-            require($localPath . $views["error"]);
+            $errorView[] = Constants::NOT_A_VALID_NUMBER_ERROR;
+        }
+
+        if (count($errorView) == 0) {
+            $configurationModel->updateConfiguration('numberOfNewsPerPage', $numberOfNews);
+            header('Location: ?action=homeAdmin');
         }
         else {
-            $configurationModel->updateConfiguration('numberOfNewsPerPage', $numberOfNews);
-            require($localPath . $views['admin']);
+            $this->init();
         }
     }
 
     public function addRssFeed() {
+        global $errorView;
+        $errorView = [];
         $rssFeedModel = new RssFeedModel();
         $date = strftime("%Y-%m-%d %H:%M:%S", strtotime('4 december 2000'));
 
@@ -89,19 +96,40 @@ class AdminController {
         $rssFeedLink = $_REQUEST['rssFeedLink'] ?? null;
         $rssFeedLink = Validation::cleanInput($rssFeedLink);
 
-        Validation::str($rssFeedLink, "lien du flux");
+        try {
+            Validation::str($rssFeedName, "nom du flux");
+        }
+        catch (UserValidationException $e) {
+            $errorView[] = $e->getMessage();
+        }
 
-        $rssFeedModel->insertRssFeed($rssFeedName, $rssFeedLink, $date);
+        try {
+            Validation::str($rssFeedLink, "lien du flux");
+        }
+        catch (UserValidationException $e) {
+            $errorView[] = $e->getMessage();
+        }
 
-        global $localPath, $views;
-        require($localPath . $views['admin']);
+        $parser = new Parser();
+        try {
+            $parser->setPath($rssFeedLink);
+            $parser->parse($date);
+        }
+        catch (ParseError $e) {
+            $errorView[] = $e->getMessage();
+        }
+
+        if (count($errorView) == 0) {
+            $rssFeedModel->insertRssFeed($rssFeedName, $rssFeedLink, $date);
+            header('Location: ?action=homeAdmin');
+        }
+        else {
+            $this->init();
+        }
     }
 
     public function deleteRssFeed() {
-        global $localPath, $views;
-
         $idRssFeed = $_REQUEST['idStream'] ?? null;
-        var_dump($idRssFeed);
         $idRssFeed = Validation::cleanInput($idRssFeed);
 
         Validation::int($idRssFeed, "id du flux");
@@ -109,14 +137,42 @@ class AdminController {
         $rssFeedModel = new RssFeedModel();
         $rssFeedModel->deleteRssFeed($idRssFeed);
 
-        require($localPath . $views['admin']);
+        $this->init();
+    }
+
+    public function refreshRssFeed() {
+        $idRssFeed = $_REQUEST['idStream'] ?? null;
+        $idRssFeed = Validation::cleanInput($idRssFeed);
+        Validation::int($idRssFeed, "id du flux");
+
+        $rssFeedModel = new RssFeedModel();
+        $newsModel = new NewsModel();
+        $rssFeed = $rssFeedModel->getRssFeed($idRssFeed);
+
+        if ($rssFeed == null) {
+            throw new Exception("Le flux sélectionné n'existe pas.");
+        }
+
+        $parser = new Parser();
+        $parser->setPath($rssFeed->getLink());
+        $results = $parser->parse($rssFeed->getUpdateDate());
+        $date = strftime("%Y-%m-%d %H:%M:%S", strtotime('now'));
+
+        if ($results != null && !empty($results)) {
+            foreach ($results as $line) {
+                $newsModel->insertNews($rssFeed->getId(), $line[0], $line[1], $line[2],
+                    strftime("%Y-%m-%d %H:%M:%S", strtotime($line[3])));
+            }
+        }
+        $rssFeedModel->updateRssFeed($rssFeed->getId(), $rssFeed->getName(), $rssFeed->getLink(), $date);
+
+        $this->init();
     }
 
     public function disconnection() {
-        global $localPath, $views;
+        global $localPath;
         $adminModel = new AdminModel();
         $adminModel->disconnection();
-        // Revenir accueil ?
-        require($localPath . $views['auth']);
+        header('Location: ?');
     }
 }
