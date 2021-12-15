@@ -54,7 +54,6 @@
                         $id = $viewData[$i]->getId();
                         echo '<td class="col-2">';
                         echo "<a class='sup' href=?action=deleteRssFeed&idStream=$id>" . 'X' . "</a>";
-                        //echo "<a href=?page=$numberOfPages>" . $numberOfPages . "</a>";
                         echo '</td>';
                         echo '</tr>';
                     }

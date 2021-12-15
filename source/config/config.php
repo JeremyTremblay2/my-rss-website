@@ -10,9 +10,9 @@
 $localPath = __DIR__ . '/../';
 
 // Database configuration
-$login = 'root';
-$password = '';
-$databaseName = "project";
+$login = 'jetremblay';
+$password = 'achanger';
+$databaseName = "dbjetremblay";
 $dsn = 'mysql:dbname=' . $databaseName . ';host=localhost';
 // Files and views
 $views['index'] = '../index.php';
