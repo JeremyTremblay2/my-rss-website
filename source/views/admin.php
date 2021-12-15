@@ -54,7 +54,6 @@
                         $id = $viewData[$i]->getId();
                         echo '<td class="col-2">';
                         echo "<a class='sup' href=?action=deleteRssFeed&idStream=$id>" . 'X' . "</a>";
-                        //echo "<a href=?page=$numberOfPages>" . $numberOfPages . "</a>";
                         echo '</td>';
                         echo '</tr>';
                     }
@@ -62,9 +61,9 @@
                 ?>
             </table>
             <h3>Ajouter un flux</h3>
-            <form class="row1" action="?action=addRssFeed">
-                    <input class="col-3" type="name" placeholder="Nom">
-                    <input class="col-6" type="url" placeholder="Url">
+            <form class="row1" action="?action=addRssFeed" method="POST">
+                    <input class="col-3" name="rssFeedName" placeholder="Nom">
+                    <input class="col-6" name="rssFeedLink" type="url" placeholder="Url">
                     <input type="submit" class="add" value="Ajouter">
             </form>
         </article>

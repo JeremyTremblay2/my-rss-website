@@ -11,8 +11,6 @@
  * A Validation class. Used for validates fields in a form, when a user wants to connect himself.
  */
 
-require_once('Constants.php');
-
 class Validation {
     private static $_errors = true;
 
@@ -33,11 +31,10 @@ class Validation {
             self::throwError(Constants::EMPTY_ERROR . " " . $inputName, 924);
         }
         if (!is_numeric($val)) {
-            var_dump($inputName);
             self::throwError(Constants::INCORRECT_ERROR . " " . $inputName, 925);
         }
         if ($val != filter_var($val, FILTER_VALIDATE_INT)) {
-            self::throwError(Constants::INCORRECT_ERROR . " " . $inputName, 926);
+            self::throwError(Constants::INJECTION_ERROR . " " . $inputName, 926);
         }
     }
 

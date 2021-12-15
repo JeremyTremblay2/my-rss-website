@@ -60,8 +60,8 @@ class AdminController {
     public function modifyNumberNews() {
         global $localPath, $views;
         $errorView = [];
-        var_dump($_REQUEST['numberPerPage']);
-        var_dump($_REQUEST['action']);
+        //var_dump($_REQUEST['numberPerPage']);
+        //var_dump($_REQUEST['action']);
 
         $configurationModel = new ConfigurationModel();
         $numberOfNews = $_REQUEST['numberPerPage'] ?? null;
@@ -80,6 +80,19 @@ class AdminController {
     }
 
     public function addRssFeed() {
+        $rssFeedModel = new RssFeedModel();
+        $date = strftime("%Y-%m-%d %H:%M:%S", strtotime('4 december 2000'));
+
+        $rssFeedName = $_REQUEST['rssFeedName'] ?? 'Flux non nommé';
+        $rssFeedName = Validation::cleanInput($rssFeedName);
+
+        $rssFeedLink = $_REQUEST['rssFeedLink'] ?? null;
+        $rssFeedLink = Validation::cleanInput($rssFeedLink);
+
+        Validation::str($rssFeedLink, "lien du flux");
+
+        $rssFeedModel->insert($rssFeedName, $rssFeedLink, $date);
+
         global $localPath, $views;
         require($localPath . $views['admin']);
     }
