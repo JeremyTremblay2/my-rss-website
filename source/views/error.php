@@ -10,11 +10,7 @@
     <head>
         <style>
             body{
-                /*background-image: url("https://imgr.search.brave.com/sDA-IJzo6udlVvcM3FXQ4sWFuPVyxyAxvoBg5XkgizU/fit/844/225/ce/1/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5R/LUh5WUlaazhWMVBZ/RWMwMV9QTEF3SGFF/SyZwaWQ9QXBp");
-                background-repeat: repeat-x;
-                width: 100vh;
-                height: 100vh;*/
-                background-image: linear-gradient(to bottom,#346291e0,lightgrey );
+                background-image: linear-gradient(to bottom,#e0cc91,lightgrey );
                 background-repeat: repeat-x;
                 min-height: 98vh;
             }
@@ -37,31 +33,30 @@
                 color: white;
             }
 
-            header button{
-                transition: 1s;
+            header a.button{
+                display: flex;
+                transition: 0.5s;
+                justify-content: center;
                 border:2px solid rgb(167, 89, 17);
                 border-radius: 12px;
                 height: 30px;
+                width : 10%;
+                min-width: 100px;
                 margin: 0 10px 0 0;
-            }
-
-            header button a.button{
-                transition: 1s;
-                background-color: transparent;
+                background-color: white;
                 text-decoration: none;
                 color: rgb(167, 89, 17);
                 font-size: 1rem;
             }
 
-            header button:hover{
-                transition: 1s;
+            header .button:hover{
+                transition: 0.5s;
                 background-color: rgb(167, 89, 17);
-            }
-
-            header button:hover > a{
-                transition: 1s;
+                transition: 0.5s;
+                font-weight: bold;
                 color: white;
             }
+
             /*Vue d'erreur*/
             main{
                 display: flex;
@@ -94,7 +89,6 @@
 
         </style>
         <meta charset="utf-8">
-        <link type="text/css" rel="stylesheet" href="views/css/stylesheet.css">
         <title>Erreur interne</title>
     </head>
     <body>
@@ -102,7 +96,7 @@
             <img src="views/ressources/images/RSS-logo.png"/>
             <h1>My RSS Website</h1>
 
-            <button><a class="button" href="?action=home">retour en lieu sûr</a></button>
+            <a class="button" href="?action=connection">Connexion</a>
         </header>
         <main>
             <h1>Vous ne devriez pas être ici !!!</h1>

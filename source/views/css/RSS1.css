@@ -26,34 +26,30 @@ header h1 {
     color: #653b0e;
 }
 
-header button{
+header a.button{
+    display: flex;
     transition: 0.5s;
+    justify-content: center;
     border:2px solid rgb(167, 89, 17);
     border-radius: 12px;
     height: 30px;
     width : 10%;
-    min-width: 100px;
+    min-width: 120px;
     margin: 0 10px 0 0;
-}
-
-header button a.button{
-    transition: 0.5s;
-    background-color: transparent;
+    background-color: white;
     text-decoration: none;
     color: rgb(167, 89, 17);
     font-size: 1rem;
 }
 
-header button:hover{
+header .button:hover{
     transition: 0.5s;
     background-color: rgb(167, 89, 17);
-}
-
-header button:hover > a{
     transition: 0.5s;
     font-weight: bold;
     color: white;
 }
+
 
 /*Formulaires */
 
@@ -82,7 +78,6 @@ section{
     flex-direction: row;
     margin-top: 10%;
     justify-content: center;
-    min-height: 100%;
     font-size: 1.5em;
     min-width: 400px;
 }
@@ -198,7 +193,7 @@ form input:invalid ~ span {
 
 /*Page admin*/
 
-article .row{
+article .row2{
     margin: 0 50px;
 }
 
@@ -235,8 +230,9 @@ a.sup{
     border: black solid 1px;
     border-radius: 12px;
     text-decoration: none;
+    display:flex;
     justify-content: center;
-    text-align: center;
+    align-items: center;
     color:black;
     width: 50%;
     margin: 5px;
@@ -268,7 +264,7 @@ article h1,article h3{
     text-align: center;
 }
 
-button.add{
+input.add{
     border: black solid 1px;
     border-radius: 12px;
     text-decoration: none;
@@ -279,7 +275,7 @@ button.add{
     margin: 5px;
 }
 
-button.add:hover{
+input.add:hover{
     transition: 1s;
     color:white;
     font-weight: bold;
@@ -307,23 +303,26 @@ button.add:hover{
 
 /*Page d'accueil*/
 
-.row{
+article.accueil .row{
     display: flex;
     justify-content: center;
 }
 
-.row a{
+article.accueil .row a{
     transition: 0.5s;
-    min-width: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align:justify;
     color: white;
 }
 
-.row a:hover{
+article.accueil .row a:hover{
     transition: 0.5s;
     color: black;
+}
+
+article.accueil .row a:hover .title{
     font-weight: bold;
 }
 

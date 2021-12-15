@@ -3,7 +3,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <link type="text/css" rel="stylesheet" href="views/css/RSS.css">
+        <link type="text/css" rel="stylesheet" href="views/css/RSS1.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
         <title>My RSS Website</title>
@@ -13,7 +13,7 @@
                 <img src="views/ressources/images/RSS-logo.png"/>
                 <h1>My RSS Website</h1>
                 
-                <button><a class="button" href="?action=disconnection">Déconnection</a></button>
+                <a class="button" href="?action=disconnection">Déconnection</a>
         </header>
 
         <a class="accueil" href="?action=home"><-Accueil</a>
@@ -62,9 +62,9 @@
                 ?>
             </table>
             <h3>Ajouter un flux</h3>
-            <form class="row1" action="?action=addRssFeed">
-                    <input class="col-3" type="name" placeholder="Nom">
-                    <input class="col-6" type="url" placeholder="Url">
+            <form class="row1" method="post" action="?action=addRssFeed">
+                    <input class="col-3" name="rssFeedName" placeholder="Nom">
+                    <input class="col-6" name = "rssFeedLink" type="url" placeholder="Url">
                     <input type="submit" class="add" value="Ajouter">
             </form>
         </article>
