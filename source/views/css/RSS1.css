@@ -30,6 +30,7 @@ header a.button{
     display: flex;
     transition: 0.5s;
     justify-content: center;
+    align-items: center;
     border:2px solid rgb(167, 89, 17);
     border-radius: 12px;
     height: 30px;
@@ -412,4 +413,34 @@ footer a{
 
 footer a:hover{
     text-decoration: blue underline;
+}
+
+/*Vue d'erreur*/
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+main h1{
+    color: #516a15;
+    font-size: xxx-large;
+}
+
+main a.email{
+    color: black;
+    text-decoration: underline;
+}
+
+main h3{
+    font-size: x-large;
+}
+
+main .list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
