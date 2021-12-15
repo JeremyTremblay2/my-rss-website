@@ -35,7 +35,6 @@ class FrontController {
                     require($localPath . $views['auth']);
                 }
                 else {
-                    var_dump("Je suis un admin");
                     new AdminController();
                 }
             }
