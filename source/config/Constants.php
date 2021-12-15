@@ -7,5 +7,6 @@ class Constants {
     const INJECTION_ERROR = 'Tentative d\'injection de code déjouée sur le champ';
     const PDO_ERROR = 'Erreur innatendue lors de l\'accès à la base de données.';
     const GENERAL_ERROR = 'Erreur innatendue dans le traitement de votre requête. Informations complémentaires :';
+    const CONNECTION_ERROR = 'Le couple nom d\'utilisateur / mot de passe est incorrect.';
     const DEFAULT_NUMBER_OF_NEWS = 12;
 }

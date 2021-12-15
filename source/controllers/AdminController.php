@@ -91,7 +91,7 @@ class AdminController {
 
         Validation::str($rssFeedLink, "lien du flux");
 
-        $rssFeedModel->insert($rssFeedName, $rssFeedLink, $date);
+        $rssFeedModel->insertRssFeed($rssFeedName, $rssFeedLink, $date);
 
         global $localPath, $views;
         require($localPath . $views['admin']);

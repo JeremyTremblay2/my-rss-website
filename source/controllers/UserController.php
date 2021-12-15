@@ -36,6 +36,7 @@ class UserController {
             $errorView[] = Constants::PDO_ERROR . $e->getMessage();
             require($localPath . $views["error"]);
         }
+        //throwable
         catch (Exception $e){
             $errorView[] = Constants::GENERAL_ERROR . $e->getMessage();
             require($localPath . $views["error"]);
@@ -140,8 +141,22 @@ class UserController {
         );
 
         if (count($errorView) == 0) {
-            $adminModel = new AdminModel();
-            $adminModel->connection($username, $password, $errorView);
+            $userModel = new UserModel();
+            $user = $userModel->getUser($username);
+
+            if ($user == null) {
+                $errorView[] = Constants::CONNECTION_ERROR;
+            }
+            else {
+                if (password_verify($password, $user->getPassword())) {
+                    var_dump("dflkjglkdfsgldfslkghfh");
+                    $userModel->connection($username);
+                    require($localPath . $views['admin']);
+                }
+                else {
+                    $errorView[] = Constants::CONNECTION_ERROR;
+                }
+            }
         }
 
         if (count($errorView) != 0) {

@@ -19,4 +19,8 @@ class UserModel {
     public function insertUser(string $username, string $password) : void {
         $this->gateway->insert($username, $password);
     }
+
+    public function connection(string $username) {
+        $_SESSION['login'] = $username;
+    }
 }

@@ -11,6 +11,8 @@ class AdminModel {
     }
 
     public function connection(string $username, string $passwordUser, array &$errorView) {
+        global $localPath, $views;
+        //$userGateway = new UserGateway(new Connection($dsn, $login, $password));
         $userModel = new UserModel();
         $user = $userModel->getUser($username);
 
