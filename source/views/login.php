@@ -27,16 +27,14 @@
             <div class="formulaire">
                 <h1>Connexion</h1>
                     <form name="myForm" method="post" action="?action=connectionClick">
-                        <label>pseudo :</label>
+                        <label>Pseudo :</label>
                         <input type=text pattern="[a-zA-Z0-9\d@$!%*_-#?&]+" name="name" class="field-long" placeholder="pseudo">
-                        <label>mot de passe :</label>
+                        <label>Mot de passe :</label>
                         <input type=password name="password" class="field-long" placeholder="mot de passe">
                         <input class="validation" type="submit" value="Envoyer">
                         <?php
                         if (isset($errorView) && count($errorView)>0) {
                             echo "<div class='error'>";
-                            echo "<h2>ERREUR !!!!!</h2>";
-
                             echo "<div class='txt'>";
                             foreach ($errorView as $error) {
                                 echo $error . "<br />";
@@ -47,5 +45,8 @@
                 </form>
             </div>
         </section>
+        <footer>
+            <p> -- By Jeremy TREMBLAY and Maxime GRANET --</p>
+        </footer>
     </body>
 </html>

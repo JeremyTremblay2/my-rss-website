@@ -17,7 +17,7 @@
             <img src="views/ressources/images/RSS-logo.png"/>
             <h1>My RSS Website</h1>
 
-            <a class="button" href="">Revenir en lieu sûr</a>
+            <a class="button" href=".">Revenir en lieu sûr</a>
         </header>
         <main>
             <h1>Vous ne devriez pas être ici !!!</h1>

@@ -49,7 +49,7 @@ else {
                 }
                 echo "</div>";
                 echo "</article>";
-                echo "<footer>";
+                echo "<div class='navig'>";
                 if (isset($numberOfPages) && isset($currentPage)) {
                     if ($currentPage == 1) {
                         echo " <strong>$currentPage</strong>&nbsp;";
@@ -88,7 +88,7 @@ else {
                         }
                     }
                 }
-                echo "</footer>";
+                echo "</div>";
     }
             ?>
     </body>
