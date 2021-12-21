@@ -11,7 +11,7 @@ class Parser {
 
     public function setPath(string $path): void {
         $this->path = $path;
-        $this->stream = simplexml_load_file($path, 'SimpleXMLElement', LIBXML_NOCDATA | LIBXML_COMPACT | LIBXML_NOWARNING);
+        $this->stream = simplexml_load_file($path, 'SimpleXMLElement', LIBXML_NOWARNING);
     }
 
     public function getResults() {
