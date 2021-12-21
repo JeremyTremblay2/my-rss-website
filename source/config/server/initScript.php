@@ -19,8 +19,6 @@ $date = strftime("%Y-%m-%d %H:%M:%S", strtotime('4 december 2000'));
 
 //Rss Feeds from the website 'Le Monde'
 $rssFeedArray = array(
-    array('Politique', 'https://www.lemonde.fr/politique/rss_full.xml', $date),
-    array('Economie', 'https://www.lemonde.fr/economie/rss_full.xml', $date),
     array('Culture', 'https://www.lemonde.fr/culture/rss_full.xml', $date),
     array('Sport', 'https://www.lemonde.fr/sport/rss_full.xml', $date),
     array('Planete', 'https://www.lemonde.fr/planete/rss_full.xml', $date),
@@ -29,6 +27,8 @@ $rssFeedArray = array(
     array('Opinion', 'https://www.lemonde.fr/idees/rss_full.xml', $date),
     array('M le Mag', 'https://www.lemonde.fr/m-le-mag/rss_full.xml', $date),
     array('Guide d\'achats', 'https://www.lemonde.fr/guides-d-achat/rss_full.xml', $date),
+    array('Guide d\'achats', 'https://www.ledevoir.com/rss/manchettes.xml', $date),
+    array('Guide d\'achats', 'https://foodloire-export-agroalimentaire-pays-de-la-loire.chambres-agriculture.fr/feeds/flux.rss', $date),
 );
 
 // Insertions in the database if the key/value pair doesn't exists.

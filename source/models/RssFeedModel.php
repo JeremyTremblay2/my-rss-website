@@ -36,6 +36,10 @@ class RssFeedModel {
         return $this->gateway->numberOfRssFeeds()[0][0];
     }
 
+    public function checkIfExists(string $link) {
+        return $this->gateway->isRssFeedExists($link)[0][0];
+    }
+
     public function insertRssFeed(string $name, string $link, string $updateDate) : void {
         $this->gateway->insert($name, $link, $updateDate);
     }

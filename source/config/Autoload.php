@@ -1,8 +1,11 @@
 <?php
 
-class Autoload
-{
+class Autoload {
     private static $_instance = null;
+
+    public static function isStarted(): bool {
+        return !self::$_instance == null;
+    }
 
     public static function charger()
     {

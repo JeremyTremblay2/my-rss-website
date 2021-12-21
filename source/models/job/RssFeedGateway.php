@@ -115,6 +115,25 @@ class RssFeedGateway {
     }
 
     /**
+     * Research a RssFeed from its link.
+     *
+     * @param string $link The id of the rss feed to delete.
+     * @return array An array of results or null if the request fails.
+     * @throws PDOException If the request fails.
+     */
+    public function isRssFeedExists(string $link): ?array {
+        $query = 'SELECT COUNT(*) FROM rssfeed WHERE link = :link';
+        $success = $this->connection->executeQuery($query, array(
+            ':link' => array($link, PDO::PARAM_STR)
+        ));
+        if ($success) {
+            $results = $this->connection->getResults();
+            return $results;
+        }
+        throw new PDOException("Impossible d'executer la commande de recherche de flux de lien depuis la base.", 921);
+    }
+
+    /**
      * Update a RssFeed from its id.
      *
      * @param int $id The id of the rss feed to update.
@@ -132,7 +151,7 @@ class RssFeedGateway {
             ':id' => array($id, PDO::PARAM_INT)
         ));
         if (!$success) {
-            throw new PDOException("Impossible d'executer la commande de modification de flux depuis la base.", 921);
+            throw new PDOException("Impossible d'executer la commande de modification de flux depuis la base.", 922);
         }
     }
 }

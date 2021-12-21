@@ -2,7 +2,9 @@
 
 require_once('../config.php');
 require_once('../Autoload.php');
-Autoload::charger();
+if (!Autoload::isStarted()) {
+    Autoload::charger();
+}
 
 // Connection and instantiations.
 if (!(isset($login) and isset($password) and isset($dsn))) {

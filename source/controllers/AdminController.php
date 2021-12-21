@@ -40,11 +40,11 @@ class AdminController {
         }
         catch(PDOException $e) {
             $errorView[] = Constants::PDO_ERROR . $e->getMessage();
-            require($localPath . ' ' . $views["error"]);
+            require($localPath . $views["error"]);
         }
         catch (Throwable $e){
             $errorView[] = Constants::GENERAL_ERROR . $e->getMessage();
-            require($localPath . ' ' . $views["error"]);
+            require($localPath . $views["error"]);
         }
     }
 
@@ -115,8 +115,12 @@ class AdminController {
             $parser->setPath($rssFeedLink);
             $parser->parse($date);
         }
-        catch (ParseError $e) {
+        catch (Throwable $e) {
             $errorView[] = $e->getMessage();
+        }
+
+        if ($rssFeedModel->checkIfExists($rssFeedLink) == 1) {
+            $errorView[] = Constants::ERROR_RSS_FEED_ALREADY_EXISTS;
         }
 
         if (count($errorView) == 0) {

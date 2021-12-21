@@ -5,6 +5,19 @@ class Parser {
     private $results;
     private $stream;
 
+    public function __construct() {
+        set_error_handler(function($errno, $errstr) {
+            throw new ParseError(Constants::PARSE_ERROR, $errno);
+        });
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStream() {
+        return $this->stream;
+    }
+
     public function getPath(): string {
         return $this->path;
     }
@@ -19,9 +32,13 @@ class Parser {
     }
 
     public function parse(string $publicationDate): array {
+        set_error_handler(function($errno, $errstr) {
+            throw new ParseError(Constants::PARSE_ERROR, $errno);
+        });
         if (false === $this->stream) {
-            throw new ParseError("Impossible de parser le flux RSS, il est incorrect ou non-reconnu.");
+            restore_error_handler();
         }
+
         $this->results = array();
         foreach ($this->stream->channel->item as $item) {
             $date = strftime("%Y-%m-%d %H:%M:%S", strtotime(($item->pubDate)));

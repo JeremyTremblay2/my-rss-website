@@ -86,6 +86,10 @@ class UserController {
             $currentPage = $numberOfPages;
         }
 
+        if ($numberOfNews == 0) {
+            $currentPage = 1;
+        }
+
         $viewData = $newsModel->findNewsInRange($numberOfNewsPerPage, ($currentPage - 1) * $numberOfNewsPerPage);
         require($localPath . $views['news']);
     }

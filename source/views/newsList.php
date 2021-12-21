@@ -1,11 +1,6 @@
 <!-- Created: 05/12/2021 by maxime.granet -->
 <?php
 global $localPath, $views;
-if (!isset($viewData)) {
-    $errorView[] = "Veuillez ne pas accéder à cette page directement, mais admirez son contenu en allant sur index.php";
-    require('error.php');
-}
-else {
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -89,7 +84,6 @@ else {
                     }
                 }
                 echo "</div>";
-    }
             ?><footer>
 
                 <div class="help"></div>

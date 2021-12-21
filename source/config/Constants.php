@@ -9,5 +9,7 @@ class Constants {
     const GENERAL_ERROR = 'Erreur innatendue dans le traitement de votre requête. Informations complémentaires :';
     const CONNECTION_ERROR = 'Le couple nom d\'utilisateur / mot de passe est incorrect.';
     const NOT_A_VALID_NUMBER_ERROR = 'Veuillez entrer un nombre valide de news par page.';
+    const PARSE_ERROR = 'Impossible de parser le flux RSS, il est incorrect ou non-reconnu.';
+    const ERROR_RSS_FEED_ALREADY_EXISTS = 'Ce flux RSS est déjà présent en base de données';
     const DEFAULT_NUMBER_OF_NEWS = 12;
 }
