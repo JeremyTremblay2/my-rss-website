@@ -3,7 +3,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <link type="text/css" rel="stylesheet" href="views/css/RSS1.css">
+        <link type="text/css" rel="stylesheet" href="views/css/RSS.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
         <title>My RSS Website</title>
@@ -16,7 +16,7 @@
                 <a class="button" href="?action=disconnection">Déconnection</a>
         </header>
 
-        <a class="accueil" href="?action=home"><-Accueil</a>
+        <a class="accueil" href="?action=home">< Accueil</a>
         <section>
             <div class="formulaireAdmin">
                 <label>Nombre de news affichées par page :</label>
@@ -52,8 +52,8 @@
                         echo "<th class=col-5><a href=" . $viewData[$i]->getLink() . ">" . $viewData[$i]->getLink() . "</a></th>";
                         echo "<th class=col-3>" . $viewData[$i]->getUpdateDate() . "</th>";
                         $id = $viewData[$i]->getId();
-                        echo "<td class='col-1'><a class='sup' href=?action=deleteRssFeed&idStream=$id>" . 'X' . "</a></td>";
-                        echo "<td class='col-1'><a class='sup' href=?action=refreshRssFeed&idStream=$id>" . 'X' . "</a></td>";
+                        echo "<th class='col-1'><a class='refresh' href=?action=deleteRssFeed&idStream=$id><img src='views/ressources/icons/delete.png'></a></th>";
+                        echo "<th class='col-1'><a class='refresh' href=?action=refreshRssFeed&idStream=$id> <img src='views/ressources/icons/refresh-on.png'> </a></th>";
                         echo '</tr>';
                     }
                 }
@@ -66,5 +66,27 @@
                     <input type="submit" class="add" value="Ajouter">
             </form>
         </article>
+        <footer>
+
+            <div class="help"></div>
+            <div class="footRow">
+                <a class="footOne" href="https://www.linkedin.com/in/maxime-granet">
+                    <img src="views/ressources/images/linkedIn.png">
+                    <ul>
+                        <li>GRANET Maxime</li>
+                        <li>DUT informatique</li>
+                        <li>Expert HTML/CSS</li>
+                    </ul>
+                </a>
+                <a class="footTwo" href="https://www.linkedin.com/in/j%C3%A9r%C3%A9my-tremblay2">
+                    <img src="views/ressources/images/linkedIn.png">
+                    <ul>
+                        <li>TREMBLAY Jeremy</li>
+                        <li>DUT informatique</li>
+                        <li>Expert PHP</li>
+                    </ul>
+                </a>
+            </div>
+        </footer>
     </body>
 </html>

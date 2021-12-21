@@ -9,6 +9,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow-x: hidden;
 }
 
 header{
@@ -49,17 +50,52 @@ header a.button{
 header .button:hover{
     transition: 0.5s;
     background-color: rgb(167, 89, 17);
-    transition: 0.5s;
     font-weight: bold;
     color: white;
 }
 
 footer{
     display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background-image: url("../ressources/images/wave.svg");
+    background-size: cover;
+}
+
+footer .help{
+    height: 50px;
+}
+
+footer .footRow{
+    display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
+.footOne,.footTwo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color:white;
+    text-decoration: none;
+}
+
+.footOne:hover,.footTwo:hover {
+    color: gold;
+}
+
+.footRow ul{
+    list-style-type: none;
+}
+
+.footOne{
+    margin-right: 25%;
+}
+
+.footRow img{
+    width: 80px;
+}
 /*Formulaires */
 
 input.validation{
@@ -88,6 +124,10 @@ section{
     justify-content: center;
     font-size: 1.5em;
     min-width: 400px;
+}
+
+#login{
+    margin:10% 0;
 }
 
 section .formulaire{
@@ -206,19 +246,22 @@ article .row2{
 }
 
 a.accueil{
-    transition: 1s;
-    position: absolute;
+    transition: 0.5s;
+    border:rgb(167, 89, 17) solid 2px;
     border-radius: 12px;
     margin: 30px 0 0 30px;
-    color: black;
+    width: 100px;
+    color: rgb(167, 89, 17);
     padding: 5px;
     background-color: white;
     text-decoration: none;
+    text-align: center;
 }
 
 a.accueil:hover{
-    transition: 1s;
+    transition: 0.5s;
     background-color: rgb(167, 89, 17);
+    font-weight: bold;
     color:white;
 }
 
@@ -226,7 +269,7 @@ table{
     margin: 0 5%;
 }
 
-table .col-2,table .col-3,table .col-5{
+table .col-1,table .col-2,table .col-3,table .col-5{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -242,7 +285,7 @@ a.sup{
     justify-content: center;
     align-items: center;
     color:black;
-    width: 50%;
+    width: 75%;
     margin: 5px;
 }
 
@@ -258,6 +301,11 @@ article h1,article h3{
     flex-direction: row;
     justify-content: center;
     padding: 20px 0;
+}
+
+a.refresh img{
+    width: 40px;
+    height: 40px;
 }
 
 .row1{
@@ -407,7 +455,6 @@ ul.flux li.descr{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 10%;
 }
 
 .navig a{
