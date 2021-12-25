@@ -21,7 +21,7 @@
             <div class="formulaireAdmin">
                 <label>Nombre de news affichées par page :</label>
                 <form class="admin" name="myForm"  method="post" action="?action=changeNumberOfNews">
-                    <input type=number pattern="[0-9]+" name="numberPerPage" class="field-long" placeholder="number">
+                    <input type=number pattern="[0-9]+" name="numberPerPage"  placeholder="number">
                     <input class="submit" type="submit" value="OK">
                 </form>
                 <?php
@@ -48,8 +48,18 @@
 
                     for ($i = 0; $i < $numberOfRssFeed; $i++) {
                         echo '<tr class="row">';
-                        echo "<th class='col-2'>" . $viewData[$i]->getName() . "</th>";
-                        echo "<th class=col-5><a href=" . $viewData[$i]->getLink() . ">" . $viewData[$i]->getLink() . "</a></th>";
+                        $name = $viewData[$i]->getName();
+                        $length = 10;
+                        if(strlen($name)>$length) {
+                            $name = substr($name, 0, $length) . " ...";
+                        }
+                        echo "<th class='col-2' title='".$viewData[$i]->getName()."'>" . $name . "</th>";
+                        $link = $viewData[$i]->getLink();
+                        $linkLength = 30;
+                        if(strlen($link) >$linkLength) {
+                            $link = substr($link, 0, $linkLength) . " ...";
+                        }
+                        echo "<th class=col-5><a href=" . $viewData[$i]->getLink() . " title='".$viewData[$i]->getLink()."'>" . $link . "</a></th>";
                         echo "<th class=col-3>" . $viewData[$i]->getUpdateDate() . "</th>";
                         $id = $viewData[$i]->getId();
                         echo "<th class='col-1'><a class='refresh' href=?action=deleteRssFeed&idStream=$id><img src='views/ressources/icons/delete.png'></a></th>";

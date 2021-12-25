@@ -195,7 +195,8 @@ section form input{
 section form.admin input{
     width:100%;
     height: 30px;
-    min-width: 200px;
+    min-width: 50px;
+    max-width: 300px;
     text-align: center;
     justify-content: center;
     border: 1.5px solid grey;
