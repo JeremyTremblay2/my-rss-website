@@ -85,7 +85,7 @@ class AdminController {
     }
 
     public function addRssFeed() {
-        global $errorView;
+        global $localPath, $views, $errorView;
         $errorView = [];
         $rssFeedModel = new RssFeedModel();
         $date = strftime("%Y-%m-%d %H:%M:%S", strtotime('4 december 2000'));
@@ -128,7 +128,7 @@ class AdminController {
             header('Location: ?action=homeAdmin');
         }
         else {
-            $this->init();
+            require($localPath.$views['error']);
         }
     }
 
