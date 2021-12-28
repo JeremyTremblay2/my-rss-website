@@ -3,7 +3,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <link type="text/css" rel="stylesheet" href="views/css/RSS.css">
+        <link type="text/css" rel="stylesheet" href="views/css/RSS1.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
         <title>My RSS Website</title>
@@ -38,14 +38,24 @@
             <table>
                 <?php
                 if (isset($viewData) && isset($numberOfRssFeed)) {
-                    echo '<tr class="row">';
-                    echo '<th class="col-2">Nom</th>';
-                    echo '<th class="col-5">Lien du flux</th>';
-                    echo '<th class="col-3">Date de dernière mise à jour</th>';
-                    echo '<th class="col-1">Supprimer</th>';
-                    echo '<th class="col-1">Rafraîchir</th>';
-                    echo '</tr>';
-
+                echo "<div class='adminFlux'>";
+                for ($i = 0; $i < $numberOfRssFeed; $i++) {
+                        echo "<div class='listeFlux col-2'>";
+                            echo "<p class='name '>" . $viewData[$i]->getName() . "</p>";
+                            echo "<p class='dop'>".$viewData[$i]->getUpdateDate()."</p>";
+                            $link = $viewData[$i]->getLink();
+                            $linkLength = 30;
+                            if(strlen($link) >$linkLength) {
+                                $link = substr($link, 0, $linkLength) . " ...";
+                            }
+                            echo "<a class='link' href=" . $viewData[$i]->getLink() . " title='".$viewData[$i]->getLink()."'>" . $link . "</a>";
+                            $id = $viewData[$i]->getId();
+                            echo "<div class='adminButton'>";
+                                echo "<a class='delete' href=?action=deleteRssFeed&idStream=$id><img src='views/ressources/icons/delete.png'></a>";
+                                echo "<a class='refresh' href=?action=refreshRssFeed&idStream=$id><img src='views/ressources/icons/refresh-on.png'></a>";
+                            echo "</div>";
+                        echo "</div>";
+               /*
                     for ($i = 0; $i < $numberOfRssFeed; $i++) {
                         echo '<tr class="row">';
                         $name = $viewData[$i]->getName();
@@ -64,8 +74,9 @@
                         $id = $viewData[$i]->getId();
                         echo "<th class='col-1'><a class='refresh' href=?action=deleteRssFeed&idStream=$id><img src='views/ressources/icons/delete.png'></a></th>";
                         echo "<th class='col-1'><a class='refresh' href=?action=refreshRssFeed&idStream=$id> <img src='views/ressources/icons/refresh-on.png'> </a></th>";
-                        echo '</tr>';
+                        echo '</tr>';*/
                     }
+                echo "</div>";
                 }
                 ?>
             </table>

@@ -242,6 +242,79 @@ form input:invalid ~ span {
 
 /*Page admin*/
 
+.adminFlux{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.adminFlux .listeFlux{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin:10px;
+    padding: 10px;
+    border : black solid 2px;
+    border-radius: 15px;
+}
+
+.listeFlux p.name{
+    font-weight: bold;
+    font-size: large;
+    margin : 0;
+    text-align: center;
+
+}
+
+.listeFlux p.dop {
+    margin : 0;
+    font-size: small;
+    text-align: center;
+
+}
+
+.listeFlux a.link{
+    word-wrap: anywhere;
+    text-align: center;
+
+}
+
+.listeFlux a.link:hover{
+text-decoration: underline black;
+    color: black;
+}
+
+.listeFlux .adminButton{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-top:5px;
+}
+
+.listeFlux a.delete img{
+    width : 40px;
+    height: 40px;
+    padding: 10px;
+}
+
+.listeFlux a.refresh img{
+    width : 40px;
+    height: 40px;
+    padding: 10px;
+
+}
+
+.listeFlux a.delete:hover img{
+    padding : 5px;
+}
+
+.listeFlux a.refresh:hover img{
+    padding: 5px;
+}
+
 article .row2{
     margin: 0 50px;
 }
@@ -275,26 +348,6 @@ table .col-1,table .col-2,table .col-3,table .col-5{
     flex-direction: row;
     justify-content: center;
     border: #254c53 groove 2px;
-}
-
-a.sup{
-    transition: 1s;
-    border: black solid 1px;
-    border-radius: 12px;
-    text-decoration: none;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    color:black;
-    width: 75%;
-    margin: 5px;
-}
-
-a.sup:hover{
-    transition: 1s;
-    color:white;
-    font-weight: bold;
-    background-color: red;
 }
 
 article h1,article h3{

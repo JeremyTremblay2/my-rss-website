@@ -98,26 +98,15 @@ class AdminController {
 
         try {
             Validation::str($rssFeedName, "nom du flux");
-        }
-        catch (UserValidationException $e) {
-            $errorView[] = $e->getMessage();
-        }
-
-        try {
             Validation::str($rssFeedLink, "lien du flux");
-        }
-        catch (UserValidationException $e) {
-            $errorView[] = $e->getMessage();
-        }
-
-        $parser = new Parser();
-        try {
+            $parser = new Parser();
             $parser->setPath($rssFeedLink);
             $parser->parse($date);
         }
-        catch (Throwable $e) {
+        catch (UserValidationException $e) {
             $errorView[] = $e->getMessage();
         }
+
 
         if ($rssFeedModel->checkIfExists($rssFeedLink) == 1) {
             $errorView[] = Constants::ERROR_RSS_FEED_ALREADY_EXISTS;
