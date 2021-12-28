@@ -51,7 +51,7 @@
                             echo "<a class='link' href=" . $viewData[$i]->getLink() . " title='".$viewData[$i]->getLink()."'>" . $link . "</a>";
                             $id = $viewData[$i]->getId();
                             echo "<div class='adminButton'>";
-                                echo "<a class='delete' href=?action=deleteRssFeed&idStream=$id><img src='views/ressources/icons/delete.png'></a>";
+                                echo "<a class='delete' href=?action=deleteRssFeed&idStream=$id><img src='views/ressources/icons/delete1.png'></a>";
                                 echo "<a class='refresh' href=?action=refreshRssFeed&idStream=$id><img src='views/ressources/icons/refresh-on.png'></a>";
                             echo "</div>";
                         echo "</div>";

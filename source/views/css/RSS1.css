@@ -35,10 +35,11 @@ header a.button{
     transition: 0.5s;
     justify-content: center;
     align-items: center;
+    text-align: center;
     border:2px solid rgb(167, 89, 17);
     border-radius: 12px;
-    height: 30px;
-    width : 10%;
+    height: 40px;
+    width : 15%;
     min-width: 120px;
     margin: 0 10px 0 0;
     background-color: white;
@@ -50,7 +51,6 @@ header a.button{
 header .button:hover{
     transition: 0.5s;
     background-color: rgb(167, 89, 17);
-    font-weight: bold;
     color: white;
 }
 
@@ -258,6 +258,11 @@ form input:invalid ~ span {
     padding: 10px;
     border : black solid 2px;
     border-radius: 15px;
+
+}
+
+.adminFlux .listeFlux:hover{
+    background-color: rgba(255,255,255,0.5);
 }
 
 .listeFlux p.name{
