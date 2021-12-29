@@ -40,7 +40,7 @@
                 if (isset($viewData) && isset($numberOfRssFeed)) {
                 echo "<div class='adminFlux'>";
                 for ($i = 0; $i < $numberOfRssFeed; $i++) {
-                        echo "<div class='listeFlux col-2'>";
+                        echo "<div class='listeFlux col-3'>";
                             echo "<p class='name '>" . $viewData[$i]->getName() . "</p>";
                             echo "<p class='dop'>".$viewData[$i]->getUpdateDate()."</p>";
                             $link = $viewData[$i]->getLink();
@@ -87,27 +87,7 @@
                     <input type="submit" class="add" value="Ajouter">
             </form>
         </article>
-        <footer>
-
-            <div class="help"></div>
-            <div class="footRow">
-                <a class="footOne" href="https://www.linkedin.com/in/maxime-granet">
-                    <img src="views/ressources/images/linkedIn.png">
-                    <ul>
-                        <li>GRANET Maxime</li>
-                        <li>DUT informatique</li>
-                        <li>Expert HTML/CSS</li>
-                    </ul>
-                </a>
-                <a class="footTwo" href="https://www.linkedin.com/in/j%C3%A9r%C3%A9my-tremblay2">
-                    <img src="views/ressources/images/linkedIn.png">
-                    <ul>
-                        <li>TREMBLAY Jeremy</li>
-                        <li>DUT informatique</li>
-                        <li>Expert PHP</li>
-                    </ul>
-                </a>
-            </div>
-        </footer>
+        <?php require ("footer.php")
+        ?>
     </body>
 </html>

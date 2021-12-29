@@ -1,5 +1,12 @@
 <?php
 
+/** Name : initScript.php
+ * Project : My RSS website
+ * Usefulness : call Autoload.php, load basics RSSFeeds into rssFeedArray, initialise the BD and require periodicReading.php.
+ * Last Modification date : 29/12/2021
+ * Authors : Maxime GRANET, Jérémy TREMBLAY
+ */
+
 require_once('../config.php');
 require_once('../Autoload.php');
 Autoload::charger();
@@ -17,7 +24,7 @@ $rssFeedModel = new RssFeedModel();
 // A past date.
 $date = strftime("%Y-%m-%d %H:%M:%S", strtotime('4 december 2000'));
 
-//Rss Feeds from the website 'Le Monde'
+//Rss Feeds from the website 'Le Monde', and some other website to complete a base of RSS Feeds
 $rssFeedArray = array(
     array('Culture', 'https://www.lemonde.fr/culture/rss_full.xml', $date),
     array('Sport', 'https://www.lemonde.fr/sport/rss_full.xml', $date),

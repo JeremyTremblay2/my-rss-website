@@ -3,7 +3,7 @@
  * Name : Validation.php
  * Project : My RSS website
  * Usefulness : contains a Validation class, allowing verifications on data entered in forms.
- * Last Modification date : 05/12/2021
+ * Last Modification date : 29/12/2021
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 
@@ -14,6 +14,13 @@
 class Validation {
     private static $_errors = true;
 
+    /**
+     * input string control
+     * @param $val input who need to control
+     * @param string $inputName name of the input
+     * @return void
+     * @throws Exception if it's not a string, or not a valid string
+     */
     static function str($val, string $inputName) {
         if (empty($val)) {
             self::throwError(Constants::EMPTY_ERROR . " " . $inputName, 921);
@@ -26,6 +33,13 @@ class Validation {
         }
     }
 
+    /**
+     * input int control
+     * @param $val input who need to control
+     * @param string $inputName name of the input
+     * @return void
+     * @throws Exception if it's not an integer, or not a valid itneger
+     */
     static function int($val, string $inputName) {
         if (empty($val)) {
             self::throwError(Constants::EMPTY_ERROR . " " . $inputName, 924);
@@ -38,6 +52,10 @@ class Validation {
         }
     }
 
+    /**
+     * @param string|null $data data to be cleaned
+     * @return string|null return null if data is null, or return the value of the data after cleaning
+     */
     static function cleanInput(?string $data): ?string {
         if ($data != null) {
             $data = trim($data);
@@ -48,7 +66,11 @@ class Validation {
     }
 
     /**
-     * @throws Exception
+     * @param $error type of the Exception
+     * @param $errorCode code of the Exception
+     * @return void
+     * @throws UserValidationException if there is an exception we throw a UserValidationException with type and code
+     * of the Exception
      */
     static function throwError($error = Constants::GLOBAL_ERROR, $errorCode = 0)  {
         if (self::$_errors == true) {

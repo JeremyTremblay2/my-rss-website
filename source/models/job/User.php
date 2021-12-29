@@ -3,7 +3,7 @@
  * Name : User.php
  * Project : My RSS website
  * Usefulness : contains a User class, allowing the instantiation of users.
- * Last Modification date : 05/12/2021
+ * Last Modification date : 29/12/2021
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 

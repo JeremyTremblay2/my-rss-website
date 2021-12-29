@@ -2,7 +2,7 @@
 /** Name : Connection.php
  * Project : My RSS website
  * Usefulness : Class allowing a user to connect himself to a database and execute some queries.
- * Last Modification date : 05/12/2021
+ * Last Modification date : 29/12/2021
  * Authors : SALVA Sébastien, VIALLEMONTEIL Sébastien
  */
 

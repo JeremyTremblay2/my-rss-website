@@ -3,7 +3,7 @@
  * Name : UserGateway.php
  * Project : My RSS website
  * Usefulness : contains a UserGateway class, allowing actions on data inside the database, like researches.
- * Last Modification date : 05/12/2021
+ * Last Modification date : 29/12/2021
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 

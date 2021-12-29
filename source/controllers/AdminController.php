@@ -1,7 +1,18 @@
 <?php
 
+/**
+ * Name : AdminController.php
+ * Project : My RSS website
+ * Usefulness : contains a AdminController class, manages the controls into admin part.
+ * Last Modification date : 29/12/2021
+ * Authors : Maxime GRANET, Jérémy TREMBLAY
+ */
+
 class AdminController {
 
+    /**
+     * create a nom controller, call the best methode in function of the action passed into URL
+     */
     public function __construct() {
         global $localPath, $views;
         $errorView = array();
@@ -48,8 +59,12 @@ class AdminController {
         }
     }
 
+    /**
+     * initialize the array of RSS feeds
+     * @return void
+     */
     public function init() {
-        global $localPath, $views, $errorView;
+        global $localPath, $views;
 
         $rssFeedModel = new RssFeedModel();
         $numberOfRssFeed = $rssFeedModel->getNumberOfRssFeeds();
@@ -57,6 +72,12 @@ class AdminController {
         require($localPath . $views['admin']);
     }
 
+    /**
+     * function to modify the number of news into BD
+     * write into errorView if there is a problem
+     * @return void
+     * @throws Exception if the number is not an int
+     */
     public function modifyNumberNews() {
         global $errorView;
         $errorView = [];
@@ -84,6 +105,12 @@ class AdminController {
         }
     }
 
+    /**
+     * function to add a stream
+     * write into errorView if there is a problem with the name or the link
+     * @return void
+     * @throws Exception if the link is not valid
+     */
     public function addRssFeed() {
         global $errorView;
         $errorView = [];
@@ -121,6 +148,11 @@ class AdminController {
         }
     }
 
+    /**
+     * delete a stream whose id is passed by argument
+     * @return void
+     * @throws Exception
+     */
     public function deleteRssFeed() {
         $idRssFeed = $_REQUEST['idStream'] ?? null;
         $idRssFeed = Validation::cleanInput($idRssFeed);
@@ -133,6 +165,11 @@ class AdminController {
         $this->init();
     }
 
+    /**
+     * refresh a stream whose id is passed by argument
+     * @return void
+     * @throws Exception
+     */
     public function refreshRssFeed() {
         $idRssFeed = $_REQUEST['idStream'] ?? null;
         $idRssFeed = Validation::cleanInput($idRssFeed);
@@ -162,6 +199,10 @@ class AdminController {
         $this->init();
     }
 
+    /**
+     * disconnection of an Admin
+     * @return void
+     */
     public function disconnection() {
         global $localPath;
         $adminModel = new AdminModel();

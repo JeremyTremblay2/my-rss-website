@@ -1,7 +1,19 @@
 <?php
 
+/**
+ * Name : FrontController.php
+ * Project : My RSS website
+ * Usefulness : contains a FrontController class, manages the controls into all of the website.
+ * Last Modification date : 29/12/2021
+ * Authors : Maxime GRANET, Jérémy TREMBLAY
+ */
+
+
 class FrontController {
 
+    /**
+     * select the good controler in function of the action
+     */
     public function __construct() {
         global $localPath, $views;
 

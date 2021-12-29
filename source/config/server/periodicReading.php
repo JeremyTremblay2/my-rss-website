@@ -1,5 +1,13 @@
 <?php
 
+/** Name : periodicReading.php
+ * Project : My RSS website
+ * Usefulness : Read the differents stream to complete the database with the last news.
+ * Last Modification date : 29/12/2021
+ * Authors : Maxime GRANET, Jérémy TREMBLAY
+ */
+
+
 require_once('../config.php');
 require_once('../Autoload.php');
 if (!Autoload::isStarted()) {

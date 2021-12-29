@@ -1,15 +1,18 @@
 body{
-    /*background-image: url("https://imgr.search.brave.com/sDA-IJzo6udlVvcM3FXQ4sWFuPVyxyAxvoBg5XkgizU/fit/844/225/ce/1/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5R/LUh5WUlaazhWMVBZ/RWMwMV9QTEF3SGFF/SyZwaWQ9QXBp");
-    background-repeat: repeat-x;
-    width: 100vh;
-    height: 100vh;*/
     background-image: linear-gradient(to bottom,#e0cc91,lightgrey );
     background-repeat: repeat-x;
     min-height: 100vh;
     display: flex;
+    margin:0;
     flex-direction: column;
     justify-content: space-between;
     overflow-x: hidden;
+}
+
+@media screen{
+    body{
+        min-width: 450px;
+    }
 }
 
 header{
@@ -270,6 +273,7 @@ form input:invalid ~ span {
     font-size: large;
     margin : 0;
     text-align: center;
+    word-wrap: anywhere;
 
 }
 
@@ -421,6 +425,7 @@ input.add:hover{
 article.accueil .row{
     display: flex;
     justify-content: center;
+    margin: 0 50px;
 }
 
 article.accueil .row a{

@@ -2,8 +2,8 @@
 /**
  * Name : Configuration.php
  * Project : My RSS website
- * Usefulness : contains a Configuration class, representing a kay / value pair, useful for some operations.
- * Last Modification date : 05/12/2021
+ * Usefulness : contains a Configuration class, representing a key / value pair, useful for some operations.
+ * Last Modification date : 29/12/2021
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 

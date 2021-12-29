@@ -1,9 +1,20 @@
 <?php
 
+/**
+ * Name : UserController.php
+ * Project : My RSS website
+ * Usefulness : contains a UserController class, manages the controls into user part.
+ * Last Modification date : 29/12/2021
+ * Authors : Maxime GRANET, Jérémy TREMBLAY
+ */
+
 //classe config static/singleton => construct => param clé
 
 class UserController {
 
+    /**
+     * select the best methode in function of the action passed in URL
+     */
     public function __construct() {
         global $localPath, $views;
         $errorView = array();
@@ -43,6 +54,11 @@ class UserController {
         }
     }
 
+    /**
+     * initialize variable from the BD for the page
+     * @return void
+     * @throws Exception
+     */
     private function init(){
         global $localPath, $views;
         $currentPage = $_REQUEST['page'] ?? 1;
@@ -94,6 +110,10 @@ class UserController {
         require($localPath . $views['news']);
     }
 
+    /**
+     * give access to the admin mode if you are connected, alse give the connection page
+     * @return void
+     */
     private function connection() {
         global $localPath, $views;
         $adminModel = new AdminModel();
@@ -106,6 +126,11 @@ class UserController {
         }
     }
 
+    /**
+     * test if the couple pseudo/password is true or false, if it's the good couple that's open the admin page
+     * @return void
+     * @throws Exception
+     */
     private function connectionClicked() {
         global $localPath, $views;
         $errorView = [];
