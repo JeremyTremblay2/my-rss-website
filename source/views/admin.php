@@ -25,9 +25,8 @@
                     <input class="submit" type="submit" value="OK">
                 </form>
                 <?php
-                if(!empty($this->errorView)){
-
-                    foreach ($this->errorView as $error) {
+                if(isset($errorView)){
+                    foreach ($errorView as $error) {
                         echo "<b>$error</b>";
                     }
                 }
