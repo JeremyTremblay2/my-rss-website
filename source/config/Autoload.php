@@ -3,22 +3,22 @@
  * Project : My RSS website
  * Usefulness : contains a Autoload class, allows to include php classes and files.
  * Last Modification date : 29/12/2021
- * Authors : Maxime GRANET, Jérémy TREMBLAY
+ * Authors : Sebastien SALVA, Sabastien VIALLEMONTEIL
  */
 class Autoload {
     private static $_instance = null;
 
     /**
-     * @return bool true if classe has a instance not null
+     * @return bool true if the autoload is already started
      */
     public static function isStarted(): bool {
         return !self::$_instance == null;
     }
 
     /**
-     * load the different classes
+     * Load the different classes
      * @return void
-     * @throws RuntimeException problem when you start the autoloader or if the class already exist
+     * @throws RuntimeException If a problem occurs when you start the autoloader or if it's already started
      */
     public static function charger()
     {
@@ -33,9 +33,9 @@ class Autoload {
     }
 
     /**
-     * unload the different classes
+     * Unload the different classes
      * @return void
-     * @throws RuntimeException problem when you stop the autoloader
+     * @throws RuntimeException If a problem occurs when you stop the autoloader
      */
     public static function shutDown()
     {
@@ -48,7 +48,7 @@ class Autoload {
     }
 
     /**
-     * include the file whose name is passed in parameter
+     * Include the file whose name is passed in parameter
      * @param $class name of classe to be load
      * @return void
      */

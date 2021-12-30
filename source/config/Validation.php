@@ -15,11 +15,11 @@ class Validation {
     private static $_errors = true;
 
     /**
-     * input string control
+     * Input string control
      * @param $val input who need to control
      * @param string $inputName name of the input
      * @return void
-     * @throws Exception if it's not a string, or not a valid string
+     * @throws Exception if it's not a string, or not a valid string, or if it's empty
      */
     static function str($val, string $inputName) {
         if (empty($val)) {
@@ -53,7 +53,9 @@ class Validation {
     }
 
     /**
-     * @param string|null $data data to be cleaned
+     * Clean and sanitize a string.
+     *
+     * @param string|null $data The data to be cleaned
      * @return string|null return null if data is null, or return the value of the data after cleaning
      */
     static function cleanInput(?string $data): ?string {
@@ -66,6 +68,8 @@ class Validation {
     }
 
     /**
+     * Throw an exception.
+     *
      * @param $error type of the Exception
      * @param $errorCode code of the Exception
      * @return void

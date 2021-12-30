@@ -12,7 +12,7 @@ class AdminController {
 
     private array $errorView=[];
     /**
-     * create a nom controller, call the best methode in function of the action passed into URL
+     * Create a new AdminController, call the best methode in function of the action passed into URL
      */
     public function __construct() {
         global $localPath, $views;
@@ -61,11 +61,11 @@ class AdminController {
     }
 
     /**
-     * initialize the array of RSS feeds
+     * Initialize the array of RSS feeds
      * @return void
      */
     public function init() {
-        global $localPath, $views;
+        global $localPath, $views, $errorView;
 
         $rssFeedModel = new RssFeedModel();
         $numberOfRssFeed = $rssFeedModel->getNumberOfRssFeeds();
@@ -74,10 +74,9 @@ class AdminController {
     }
 
     /**
-     * function to modify the number of news into BD
-     * write into errorView if there is a problem
+     * This function modify the number of news into the database
      * @return void
-     * @throws Exception if the number is not an int
+     * @throws Exception if the number is not an integer
      */
     public function modifyNumberNews() {
         $this->errorView = [];
@@ -106,8 +105,7 @@ class AdminController {
     }
 
     /**
-     * function to add a stream
-     * write into errorView if there is a problem with the name or the link
+     * Add a rss feed into the database, and try to parse it.
      * @return void
      * @throws Exception if the link is not valid
      */
@@ -115,6 +113,7 @@ class AdminController {
         global $errorView;
         $this->errorView = [];
         $rssFeedModel = new RssFeedModel();
+        // A past date
         $date = strftime("%Y-%m-%d %H:%M:%S", strtotime('4 december 2000'));
 
         $rssFeedName = $_REQUEST['rssFeedName'] ?? 'Flux non nommé';
@@ -133,6 +132,9 @@ class AdminController {
         catch (UserValidationException $e) {
             $this->errorView[] = $e->getMessage();
         }
+        catch (ParseError $e) {
+            $errorView[] = $e->getMessage();
+        }
 
 
         if ($rssFeedModel->checkIfExists($rssFeedLink) == 1) {
@@ -149,7 +151,7 @@ class AdminController {
     }
 
     /**
-     * delete a stream whose id is passed by argument
+     * Delete a stream whose id is passed in the URL
      * @return void
      * @throws Exception Exception raise in Validation class
      */
@@ -157,6 +159,7 @@ class AdminController {
         $idRssFeed = $_REQUEST['idStream'] ?? null;
         $idRssFeed = Validation::cleanInput($idRssFeed);
 
+        //We have no try/catch block because in case of a problem, we go on the error page
         Validation::int($idRssFeed, "id du flux");
 
         $rssFeedModel = new RssFeedModel();
@@ -166,13 +169,15 @@ class AdminController {
     }
 
     /**
-     * refresh a stream whose id is passed by argument
+     * Refresh a stream whose id is passed by argument
      * @return void
      * @throws Exception Exception raise in Validation class
      */
     public function refreshRssFeed() {
         $idRssFeed = $_REQUEST['idStream'] ?? null;
         $idRssFeed = Validation::cleanInput($idRssFeed);
+        //If they are a problem here, it's because of a too long description or data in the stream.
+        //So we just go on the error page.
         Validation::int($idRssFeed, "id du flux");
 
         $rssFeedModel = new RssFeedModel();
@@ -200,7 +205,7 @@ class AdminController {
     }
 
     /**
-     * disconnection of an Admin
+     * Disconnect an Admin
      * @return void
      */
     public function disconnection() {

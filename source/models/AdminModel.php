@@ -8,12 +8,14 @@
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 
-
+/**
+ * An Admin model manage the admin part of a website.
+ */
 class AdminModel {
 
     /**
-     * check if the user is an admin or not
-     * @return User|null return true if the user is connected as an admin, false otherwise
+     * Check if the user is an admin or not
+     * @return User|null A User if the user is connected as an admin, null otherwise
      */
     public function isAdmin(): ?User {
         if (isset($_SESSION['login'])) {
@@ -24,7 +26,7 @@ class AdminModel {
     }
 
     /**
-     * shut down the connection of an admin
+     * Shut down the connection of an admin
      * @return void
      */
     public function disconnection() {

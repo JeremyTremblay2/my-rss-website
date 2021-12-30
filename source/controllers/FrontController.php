@@ -12,7 +12,7 @@
 class FrontController {
 
     /**
-     * select the good controler in function of the action
+     * Create a new FrontController and select the good controller in function of the action and call it.
      */
     public function __construct() {
         global $localPath, $views;
