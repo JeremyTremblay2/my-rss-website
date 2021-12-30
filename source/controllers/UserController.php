@@ -57,7 +57,7 @@ class UserController {
     /**
      * initialize variable from the BD for the page
      * @return void
-     * @throws Exception
+     * @throws Exception Exception raise in Validation class
      */
     private function init(){
         global $localPath, $views;
@@ -129,7 +129,7 @@ class UserController {
     /**
      * test if the couple pseudo/password is true or false, if it's the good couple that's open the admin page
      * @return void
-     * @throws Exception
+     * @throws Exception Exception raise in Validation class
      */
     private function connectionClicked() {
         global $localPath, $views;

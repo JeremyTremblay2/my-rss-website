@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <link type="text/css" rel="stylesheet" href="views/css/RSS1.css">
+        <link type="text/css" rel="stylesheet" href="views/css/RSS.css">
         <meta charset="utf-8">
         <title>Erreur interne</title>
     </head>

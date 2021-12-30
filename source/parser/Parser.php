@@ -16,7 +16,7 @@ class Parser {
 
     /**
      * manage error
-     * @throws ParseError
+     * @throws ParseError if there is a problem with the parse function
      */
     public function __construct() {
         set_error_handler(function($errno, $errstr) {

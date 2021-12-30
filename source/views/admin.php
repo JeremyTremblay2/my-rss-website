@@ -3,7 +3,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <link type="text/css" rel="stylesheet" href="views/css/RSS1.css">
+        <link type="text/css" rel="stylesheet" href="views/css/RSS.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
         <title>My RSS Website</title>
@@ -25,8 +25,9 @@
                     <input class="submit" type="submit" value="OK">
                 </form>
                 <?php
-                if(isset($errorView)){
-                    foreach ($errorView as $error) {
+                if(!empty($this->errorView)){
+
+                    foreach ($this->errorView as $error) {
                         echo "<b>$error</b>";
                     }
                 }

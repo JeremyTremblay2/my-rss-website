@@ -10,6 +10,7 @@
 
 class AdminController {
 
+    private array $errorView=[];
     /**
      * create a nom controller, call the best methode in function of the action passed into URL
      */
@@ -79,8 +80,7 @@ class AdminController {
      * @throws Exception if the number is not an int
      */
     public function modifyNumberNews() {
-        global $errorView;
-        $errorView = [];
+        $this->errorView = [];
         $configurationModel = new ConfigurationModel();
         $numberOfNews = $_REQUEST['numberPerPage'] ?? null;
         $numberOfNews = Validation::cleanInput($numberOfNews);
@@ -89,14 +89,14 @@ class AdminController {
             Validation::int($numberOfNews, "Nombre de news");
         }
         catch (UserValidationException $e) {
-            $errorView[] = $e->getMessage();
+            $this->errorView[] = $e->getMessage();
         }
 
-        if ($numberOfNews <= 0) {
-            $errorView[] = Constants::NOT_A_VALID_NUMBER_ERROR;
+        if ($numberOfNews <= 0 and count($this->errorView) == 0) {
+            $this->errorView[] = Constants::NOT_A_VALID_NUMBER_ERROR;
         }
 
-        if (count($errorView) == 0) {
+        if (count($this->errorView) == 0) {
             $configurationModel->updateConfiguration('numberOfNewsPerPage', $numberOfNews);
             header('Location: ?action=homeAdmin');
         }
@@ -113,7 +113,7 @@ class AdminController {
      */
     public function addRssFeed() {
         global $errorView;
-        $errorView = [];
+        $this->errorView = [];
         $rssFeedModel = new RssFeedModel();
         $date = strftime("%Y-%m-%d %H:%M:%S", strtotime('4 december 2000'));
 
@@ -131,15 +131,15 @@ class AdminController {
             $parser->parse($date);
         }
         catch (UserValidationException $e) {
-            $errorView[] = $e->getMessage();
+            $this->errorView[] = $e->getMessage();
         }
 
 
         if ($rssFeedModel->checkIfExists($rssFeedLink) == 1) {
-            $errorView[] = Constants::ERROR_RSS_FEED_ALREADY_EXISTS;
+            $this->errorView[] = Constants::ERROR_RSS_FEED_ALREADY_EXISTS;
         }
 
-        if (count($errorView) == 0) {
+        if (count($this->errorView) == 0) {
             $rssFeedModel->insertRssFeed($rssFeedName, $rssFeedLink, $date);
             header('Location: ?action=homeAdmin');
         }
@@ -151,7 +151,7 @@ class AdminController {
     /**
      * delete a stream whose id is passed by argument
      * @return void
-     * @throws Exception
+     * @throws Exception Exception raise in Validation class
      */
     public function deleteRssFeed() {
         $idRssFeed = $_REQUEST['idStream'] ?? null;
@@ -168,7 +168,7 @@ class AdminController {
     /**
      * refresh a stream whose id is passed by argument
      * @return void
-     * @throws Exception
+     * @throws Exception Exception raise in Validation class
      */
     public function refreshRssFeed() {
         $idRssFeed = $_REQUEST['idStream'] ?? null;
