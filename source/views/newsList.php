@@ -15,7 +15,7 @@ global $localPath, $views;
     <img src="views/ressources/images/RSS-logo.png"/>
     <h1>My RSS Website</h1>
 
-    <a class="button" href="?action=connection">Connexion</a>
+    <a class="button" href="?action=connection">Admin</a>
 </header>
     <body>
             <?php

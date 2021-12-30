@@ -8,12 +8,14 @@
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 
-
+/**
+ * A Rss feed model manage the Rss feed between a controller and the gateway.
+ */
 class RssFeedModel {
     private $gateway;
 
     /**
-     * create a new RssFeedGateway with a new connection
+     * Create a new RssFeedGateway with a new connection
      */
     public function __construct() {
         global $dsn, $login, $password;
@@ -21,9 +23,9 @@ class RssFeedModel {
     }
 
     /**
-     * return the RssFeed whose id is passed in argument
-     * @param int $id id of the stream
-     * @return RssFeed|null array with the stream if it exist, else otherwise
+     * Get the RssFeed whose id is passed in argument
+     * @param int $id The id of the stream
+     * @return RssFeed|null An array with the stream if it exist, else otherwise
      */
     public function getRssFeed(int $id) : ?RssFeed {
         $results = $this->gateway->findByIndex($id);
@@ -36,8 +38,8 @@ class RssFeedModel {
     }
 
     /**
-     * return all instance of RssFeed
-     * @return array|null return an array with all instance of stream, null if there is no stream
+     * Get all instances of RssFeed
+     * @return array|null An array with all instance of stream, null if there is no stream
      */
     public function getAllRssFeed() : ?array {
         $results = $this->gateway->findAllStreams();
@@ -54,27 +56,28 @@ class RssFeedModel {
     }
 
 
-    /**return the number of RssFeed
-     * @return int number of stream
+    /**
+     * Get the number of RssFeed
+     * @return int The number of stream
      */
     public function getNumberOfRssFeeds(): int {
         return $this->gateway->numberOfRssFeeds()[0][0];
     }
 
     /**
-     * check if the link is already exist
+     * Check if the link is already exist
      * @param string $link link of the stream
-     * @return mixed array of results or null if the request fails
+     * @return mixed An array of results or null if the request fails
      */
     public function checkIfExists(string $link) {
         return $this->gateway->isRssFeedExists($link)[0][0];
     }
 
     /**
-     * insert a new RssFeed
-     * @param string $name name of the stream
-     * @param string $link link of the stream
-     * @param string $updateDate date of last update of the stream
+     * Insert a new RssFeed
+     * @param string $name The name of the stream
+     * @param string $link The link of the stream
+     * @param string $updateDate The date of last update of the stream
      * @return void
      */
     public function insertRssFeed(string $name, string $link, string $updateDate) : void {
@@ -82,8 +85,8 @@ class RssFeedModel {
     }
 
     /**
-     * delete a stream whose id is passed in argument
-     * @param int $id id of the stream
+     * Delete a stream whose id is passed in argument
+     * @param int $id The id of the stream
      * @return void
      */
     public function deleteRssFeed(int $id) : void {
@@ -91,11 +94,11 @@ class RssFeedModel {
     }
 
     /**
-     * update a RssFeed
-     * @param int $id id of the stream
-     * @param string $name name of the stream
-     * @param string $link link of the stream
-     * @param string $updateDate date of last update of the stream
+     * Update a RssFeed
+     * @param int $id The id of the stream
+     * @param string $name The name of the stream
+     * @param string $link The link of the stream
+     * @param string $updateDate The date of last update of the stream
      * @return void
      */
     public function updateRssFeed(int $id, string $name, string $link, string $updateDate) : void {

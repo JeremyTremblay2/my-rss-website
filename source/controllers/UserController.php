@@ -8,12 +8,10 @@
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 
-//classe config static/singleton => construct => param clé
-
 class UserController {
 
     /**
-     * select the best methode in function of the action passed in URL
+     * Create a new UserController and select the best method in function of the action passed in URL
      */
     public function __construct() {
         global $localPath, $views;
@@ -48,6 +46,7 @@ class UserController {
             require($localPath . $views["error"]);
         }
 
+        //To get errors and exceptions
         catch (Throwable $e){
             $errorView[] = Constants::GENERAL_ERROR . $e->getMessage();
             require($localPath . $views["error"]);
@@ -55,7 +54,7 @@ class UserController {
     }
 
     /**
-     * initialize variable from the BD for the page
+     * Initialize the news from the BD for the page
      * @return void
      * @throws Exception
      */
@@ -111,7 +110,7 @@ class UserController {
     }
 
     /**
-     * give access to the admin mode if you are connected, alse give the connection page
+     * Give access to the admin mode if you are connected, else call the connection page
      * @return void
      */
     private function connection() {
@@ -127,7 +126,7 @@ class UserController {
     }
 
     /**
-     * test if the couple pseudo/password is true or false, if it's the good couple that's open the admin page
+     * Verify if the couple pseudo/password is true or false, if it's the good couple that's open the admin page
      * @return void
      * @throws Exception
      */

@@ -10,9 +10,9 @@
 
 class UserValidationException extends Exception {
     /**
-     * create an Exception
-     * @param string $message message whose describe where is the Exception
-     * @param int $errorCode code of the Exception
+     * Create a new UserValidationException
+     * @param string $message The message whose describe where is the Exception
+     * @param int $errorCode The code of the Exception
      * @param Exception|null $old if there's an old Exception we can put it here
      */
     public function __construct(string $message, int $errorCode = 0, Exception $old = null) {
@@ -20,7 +20,7 @@ class UserValidationException extends Exception {
     }
 
     /**
-     * useful to print the Exception
+     * Useful to print the Exception
      * @return string custom message to describe the Exception
      */
     public function __toString() {

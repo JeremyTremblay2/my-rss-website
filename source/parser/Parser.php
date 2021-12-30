@@ -8,15 +8,17 @@
  * Authors : Maxime GRANET, Jérémy TREMBLAY
  */
 
-
+/**
+ * A parser allows reading XML files and streams, by using simpleXML.
+ */
 class Parser {
     private $path;
     private $results;
     private $stream;
 
     /**
-     * manage error
-     * @throws ParseError
+     * Create a new Parser. Manage errors.
+     * @throws ParseError If an error occurs.
      */
     public function __construct() {
         set_error_handler(function($errno, $errstr) {
@@ -25,16 +27,16 @@ class Parser {
     }
 
     /**
-     * return the current path
-     * @return string current path
+     * Get the current path of the stream
+     * @return string The current path
      */
     public function getPath(): string {
         return $this->path;
     }
 
     /**
-     * set the current path
-     * @param string $path new path
+     * Set a new path
+     * @param string $path The new path
      * @return void
      */
     public function setPath(string $path): void {
@@ -43,17 +45,17 @@ class Parser {
     }
 
     /**
-     * return the current result
-     * @return mixed arra with news
+     * Get the last results
+     * @return mixed An array with of news
      */
     public function getResults() {
         return $this->results;
     }
 
     /**
-     * search the news that is not already into BD
-     * @param string $publicationDate date of the last update
-     * @return array array of the news after the last update
+     * Search the news from the stream and get the news that are not already in the database by comparing dates
+     * @param string $publicationDate The date of the last update
+     * @return array An array of the news after the last update
      */
     public function parse(string $publicationDate): array {
         set_error_handler(function($errno, $errstr) {
@@ -74,9 +76,9 @@ class Parser {
     }
 
     /**
-     * return the corresponding news
-     * @param SimpleXMLElement $item item which must be translated into news
-     * @return array the news corresponding to the item
+     * Get a new
+     * @param SimpleXMLElement $item The item which must be translated into news
+     * @return array A news corresponding to the item
      */
     private function getNews(SimpleXMLElement $item): array {
        return array($item->title, $item->link, $item->description, $item->pubDate);

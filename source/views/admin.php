@@ -40,42 +40,22 @@
                 if (isset($viewData) && isset($numberOfRssFeed)) {
                 echo "<div class='adminFlux'>";
                 for ($i = 0; $i < $numberOfRssFeed; $i++) {
-                        echo "<div class='listeFlux col-3'>";
-                            echo "<p class='name '>" . $viewData[$i]->getName() . "</p>";
-                            echo "<p class='dop'>".$viewData[$i]->getUpdateDate()."</p>";
-                            $link = $viewData[$i]->getLink();
-                            $linkLength = 30;
-                            if(strlen($link) >$linkLength) {
-                                $link = substr($link, 0, $linkLength) . " ...";
-                            }
-                            echo "<a class='link' href=" . $viewData[$i]->getLink() . " title='".$viewData[$i]->getLink()."'>" . $link . "</a>";
-                            $id = $viewData[$i]->getId();
-                            echo "<div class='adminButton'>";
-                                echo "<a class='delete' href=?action=deleteRssFeed&idStream=$id><img src='views/ressources/icons/delete1.png'></a>";
-                                echo "<a class='refresh' href=?action=refreshRssFeed&idStream=$id><img src='views/ressources/icons/refresh-on.png'></a>";
-                            echo "</div>";
-                        echo "</div>";
-               /*
-                    for ($i = 0; $i < $numberOfRssFeed; $i++) {
-                        echo '<tr class="row">';
-                        $name = $viewData[$i]->getName();
-                        $length = 10;
-                        if(strlen($name)>$length) {
-                            $name = substr($name, 0, $length) . " ...";
-                        }
-                        echo "<th class='col-2' title='".$viewData[$i]->getName()."'>" . $name . "</th>";
+                    echo "<div class='listeFlux col-3'>";
+                        echo "<p class='name '>" . $viewData[$i]->getName() . "</p>";
+                        echo "<p class='dop'>".$viewData[$i]->getUpdateDate()."</p>";
                         $link = $viewData[$i]->getLink();
                         $linkLength = 30;
                         if(strlen($link) >$linkLength) {
                             $link = substr($link, 0, $linkLength) . " ...";
                         }
-                        echo "<th class=col-5><a href=" . $viewData[$i]->getLink() . " title='".$viewData[$i]->getLink()."'>" . $link . "</a></th>";
-                        echo "<th class=col-3>" . $viewData[$i]->getUpdateDate() . "</th>";
+                        echo "<a class='link' href=" . $viewData[$i]->getLink() . " title='".$viewData[$i]->getLink()."'>" . $link . "</a>";
                         $id = $viewData[$i]->getId();
-                        echo "<th class='col-1'><a class='refresh' href=?action=deleteRssFeed&idStream=$id><img src='views/ressources/icons/delete.png'></a></th>";
-                        echo "<th class='col-1'><a class='refresh' href=?action=refreshRssFeed&idStream=$id> <img src='views/ressources/icons/refresh-on.png'> </a></th>";
-                        echo '</tr>';*/
-                    }
+                        echo "<div class='adminButton'>";
+                            echo "<a class='delete' href=?action=deleteRssFeed&idStream=$id><img src='views/ressources/icons/delete1.png'></a>";
+                            echo "<a class='refresh' href=?action=refreshRssFeed&idStream=$id><img src='views/ressources/icons/refresh-on.png'></a>";
+                        echo "</div>";
+                    echo "</div>";
+                }
                 echo "</div>";
                 }
                 ?>
