@@ -53,4 +53,29 @@ class UserModel {
     public function connection(string $username) {
         $_SESSION['login'] = $username;
     }
+
+    /**
+     * Modify the theme of the website based of the user's preferences.
+     * @return void
+     */
+
+    /*
+     * Not useful because done in JS.
+     *
+    public function modifyDarktheme() {
+        // 1 -> black and white
+        // 2-> colorful
+        $theme = $_COOKIE['darktheme'] ?? null;
+        $theme = Validation::cleanInput($theme);
+        Validation::int($theme, "theme");
+
+        if($theme == null) {
+            setcookie("darktheme", 1, time() * 365 * 12);
+        }
+        else {
+            $theme == 1 ? setcookie("darktheme", 2, time() + 365 * 24 * 3600)
+                        : setcookie("darktheme", 1, time() + 365 * 24 * 3600);
+        }
+    }
+    */
 }

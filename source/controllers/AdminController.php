@@ -64,15 +64,6 @@ class AdminController {
      */
     public function init() {
         global $localPath, $views, $errorView;
-        $darkTheme = $_SESSION["darktheme"] ?? 1;
-        if(isset($darkTheme)) {
-            $darkTheme = Validation::cleanInput($darkTheme);
-            Validation::int($darkTheme,"darktheme");
-            $dark = $darkTheme;
-        }
-        else {
-            $dark = 1;
-        }
 
         $rssFeedModel = new RssFeedModel();
         $numberOfRssFeed = $rssFeedModel->getNumberOfRssFeeds();
@@ -216,7 +207,6 @@ class AdminController {
      * @return void
      */
     public function disconnection() {
-        global $localPath;
         $adminModel = new AdminModel();
         $adminModel->disconnection();
         header('Location: ?');

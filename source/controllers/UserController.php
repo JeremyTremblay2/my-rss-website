@@ -16,6 +16,7 @@ class UserController {
     public function __construct() {
         global $localPath, $views;
         $errorView = array();
+
         try{
             $action = $_REQUEST['action'] ?? null;
             if ($action != null) {
@@ -33,9 +34,6 @@ class UserController {
                     break;
                 case "connectionClick":
                     $this->connectionClicked();
-                    break;
-                case "changeTheme":
-                    $this->changeTheme();
                     break;
                 default:
                     $errorView[] = "Erreur lors de l'appel PHP.";
@@ -62,15 +60,7 @@ class UserController {
      */
     private function init(){
         global $localPath, $views;
-        $darkTheme = $_SESSION["darktheme"] ?? 1;
-        if(isset($darkTheme)) {
-            $darkTheme = Validation::cleanInput($darkTheme);
-            Validation::int($darkTheme,"darktheme");
-            $dark = $darkTheme;
-        }
-        else {
-            $dark = 1;
-        }
+
         $currentPage = $_REQUEST['page'] ?? 1;
         try {
             Validation::int($currentPage, "page courante");
@@ -128,15 +118,7 @@ class UserController {
         global $localPath, $views;
         $adminModel = new AdminModel();
         $admin = $adminModel->isAdmin();
-        $darkTheme = $_SESSION["darktheme"] ?? 1;
-        if(isset($darkTheme)) {
-            $darkTheme = Validation::cleanInput($darkTheme);
-            Validation::int($darkTheme,"darktheme");
-            $dark = $darkTheme;
-        }
-        else {
-            $dark = 1;
-        }
+
         if ($admin == null) {
             require($localPath . $views['auth']);
         }
@@ -153,15 +135,6 @@ class UserController {
     private function connectionClicked() {
         global $localPath, $views;
         $errorView = [];
-        $darkTheme = $_SESSION["darktheme"] ?? 1;
-        if(isset($darkTheme)) {
-            $darkTheme = Validation::cleanInput($darkTheme);
-            Validation::int($darkTheme,"darktheme");
-            $dark = $darkTheme;
-        }
-        else {
-            $dark = 1;
-        }
 
         $username = $_POST['name'] ?? null;
         $password = $_POST['password'] ?? null;
@@ -210,30 +183,26 @@ class UserController {
             require($localPath . $views['auth']);
         }
     }
-    private function changeTheme(){
-        global $localPath, $views;
-        $page = $_REQUEST['page'];
-        if($_SESSION['darktheme']==2){
-            $_SESSION['darktheme'] = 1;
-        }
-        else{
-            $_SESSION['darktheme']=2;
-        }
-        try {
-            if($page == "home"){
-                $this->init();
-            }
-            else if($page=="login"){
-                $this->connection();
-            }
-            else if($page=="admin"){
-                header('Location: ?action=homeAdmin');
-            }
 
-        } catch (Exception $e) {
-            require ($localPath.$views["error"]);
-        }
-    }
+    /**
+     * Modify the theme of the website based of the user's preferences.
+     * @return void
+     */
+
+    /*
+    private function modifyDarktheme(){
+        global $localPath, $views;
+        $userModel = new UserModel();
+        // If an error occur, it's because the user modify the data in the cookie, so we let go him on the error page.
+        $userModel->modifyDarktheme();
+
+        $lastAction = $_SESSION['lastAction'] ?? "home";
+        $lastAction = Validation::cleanInput($lastAction);
+        // If an error occur, it's because the user modify the data in the session, so we let go him on the error page.
+        Validation::str($lastAction, "dernire action");
+
+        //header('Location: ?action=' . $lastAction);
+    }*/
 }
 ?>
 

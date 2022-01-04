@@ -24,7 +24,7 @@ $rssFeedModel = new RssFeedModel();
 // A past date.
 $date = strftime("%Y-%m-%d %H:%M:%S", strtotime('4 december 2000'));
 
-//Rss Feeds from the website 'Le Monde', and some other website to complete a base of RSS Feeds
+//Rss Feeds from the website 'Le Monde', and other websites to complete a base of RSS Feeds
 $rssFeedArray = array(
     array('Culture', 'https://www.lemonde.fr/culture/rss_full.xml', $date),
     array('Sport', 'https://www.lemonde.fr/sport/rss_full.xml', $date),

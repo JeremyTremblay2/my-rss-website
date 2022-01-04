@@ -20,6 +20,7 @@ class AdminModel {
     public function isAdmin(): ?User {
         if (isset($_SESSION['login'])) {
             $login = Validation::cleanInput($_SESSION['login']);
+            Validation::str($login,  "login");
             return new User(0, $login, 'password');
         }
         return null;

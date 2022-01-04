@@ -10,8 +10,8 @@
 $localPath = __DIR__ . '/../';
 
 // Database configuration
-$login = 'root';
-$password = '';
+$login = 'login';
+$password = 'mdp';
 $databaseName = "project";
 $dsn = 'mysql:dbname=' . $databaseName . ';host=localhost';
 

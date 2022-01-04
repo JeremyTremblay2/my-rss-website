@@ -3,9 +3,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <?php
-        include("chapeauCSS.php");
-        ?>
+        <link type='text/css' rel='stylesheet' href='views/css/RSS.css'>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
         <title>My RSS Website</title>
@@ -23,7 +21,6 @@
             <img src="views/ressources/images/RSS-logo.png"/>
             <h1>My RSS Website</h1>
             <div class="menu">
-                <a class="dark" href="?action=changeTheme&page=login"><img src="views/ressources/icons/darkteme.png"/></a>
                 <a class="button" href="?action=home">Accueil</a>
             </div>
 
