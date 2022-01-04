@@ -64,11 +64,14 @@ class AdminController {
      */
     public function init() {
         global $localPath, $views, $errorView;
-        if(isset($_SESSION['darktheme'])) {
-            $dark = $_SESSION["darktheme"];
+        $darkTheme = $_SESSION["darktheme"] ?? 1;
+        if(isset($darkTheme)) {
+            $darkTheme = Validation::cleanInput($darkTheme);
+            Validation::int($darkTheme,"darktheme");
+            $dark = $darkTheme;
         }
-        else{
-            $dark = 0;
+        else {
+            $dark = 1;
         }
 
         $rssFeedModel = new RssFeedModel();

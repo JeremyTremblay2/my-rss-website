@@ -62,15 +62,14 @@ class UserController {
      */
     private function init(){
         global $localPath, $views;
-        $dark = $_SESSION["darktheme"]??2;
-        if(isset($dark)) {
-
-            $dark=Validation::cleanInput($dark);
-            $dark=Validation::int($dark,"darktheme");
-            $dark = $_SESSION["darktheme"];
+        $darkTheme = $_SESSION["darktheme"] ?? 1;
+        if(isset($darkTheme)) {
+            $darkTheme = Validation::cleanInput($darkTheme);
+            Validation::int($darkTheme,"darktheme");
+            $dark = $darkTheme;
         }
-        else{
-            $dark = 2;
+        else {
+            $dark = 1;
         }
         $currentPage = $_REQUEST['page'] ?? 1;
         try {
@@ -129,11 +128,14 @@ class UserController {
         global $localPath, $views;
         $adminModel = new AdminModel();
         $admin = $adminModel->isAdmin();
-        if(isset($_SESSION['darktheme'])) {
-            $dark = $_SESSION["darktheme"];
+        $darkTheme = $_SESSION["darktheme"] ?? 1;
+        if(isset($darkTheme)) {
+            $darkTheme = Validation::cleanInput($darkTheme);
+            Validation::int($darkTheme,"darktheme");
+            $dark = $darkTheme;
         }
-        else{
-            $dark = 0;
+        else {
+            $dark = 1;
         }
         if ($admin == null) {
             require($localPath . $views['auth']);
@@ -151,6 +153,15 @@ class UserController {
     private function connectionClicked() {
         global $localPath, $views;
         $errorView = [];
+        $darkTheme = $_SESSION["darktheme"] ?? 1;
+        if(isset($darkTheme)) {
+            $darkTheme = Validation::cleanInput($darkTheme);
+            Validation::int($darkTheme,"darktheme");
+            $dark = $darkTheme;
+        }
+        else {
+            $dark = 1;
+        }
 
         $username = $_POST['name'] ?? null;
         $password = $_POST['password'] ?? null;
