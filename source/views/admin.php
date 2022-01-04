@@ -3,7 +3,9 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <link type="text/css" rel="stylesheet" href="views/css/RSS.css">
+        <?php
+        include("chapeauCSS.php");
+        ?>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
         <title>My RSS Website</title>
@@ -12,8 +14,12 @@
         <header>
                 <img src="views/ressources/images/RSS-logo.png"/>
                 <h1>My RSS Website</h1>
-                
+
+            <div class="menu">
+                <a class="dark" href="?action=changeTheme&page=admin"><img src="views/ressources/icons/darkteme.png"/></a>
                 <a class="button" href="?action=disconnection">Déconnection</a>
+            </div>
+
         </header>
 
         <a class="accueil" href="?action=home">< Accueil</a>
@@ -67,7 +73,7 @@
                     <input type="submit" class="add" value="Ajouter">
             </form>
         </article>
-        <?php require ("footer.php")
+        <?php include ("footer.php");
         ?>
     </body>
 </html>

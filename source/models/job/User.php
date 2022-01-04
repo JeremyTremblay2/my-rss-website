@@ -16,10 +16,12 @@ class User {
     private $id;
     private $username;
     private $password;
+    private $darktheme;
 
     /**
      * Create a new User.
      *
+     * @param int $id The id of the user.
      * @param string $username The username of the user.
      * @param string $password The password of the user.
      */
@@ -27,6 +29,7 @@ class User {
         $this->id = $id;
         $this->username = $username;
         $this->password = $password;
+        $this->darktheme = 0;
     }
 
     /**
@@ -81,6 +84,24 @@ class User {
      */
     private function setPassword(string $password) {
         $this->password = $password;
+    }
+
+    /**
+     * Get the value of the darkTheme variable
+     * @return int 0 if the darktheme is off, 1 otherwise
+     */
+    public function getDarktheme(): int
+    {
+        return $this->darktheme;
+    }
+
+    /**
+     * Set the value of the darkTheme
+     * @param int $darktheme 0 if the darktheme is off, 1 otherwise
+     */
+    public function setDarktheme(int $darktheme): void
+    {
+        $this->darktheme = $darktheme;
     }
 
     /**

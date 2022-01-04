@@ -64,6 +64,12 @@ class AdminController {
      */
     public function init() {
         global $localPath, $views, $errorView;
+        if(isset($_SESSION['darktheme'])) {
+            $dark = $_SESSION["darktheme"];
+        }
+        else{
+            $dark = 0;
+        }
 
         $rssFeedModel = new RssFeedModel();
         $numberOfRssFeed = $rssFeedModel->getNumberOfRssFeeds();
@@ -191,7 +197,7 @@ class AdminController {
         $results = $parser->parse($rssFeed->getUpdateDate());
         $date = strftime("%Y-%m-%d %H:%M:%S", strtotime('now'));
 
-        if ($results != null && !empty($results)) {
+        if (!empty($results)) {
             foreach ($results as $line) {
                 $newsModel->insertNews($rssFeed->getId(), $line[0], $line[1], $line[2],
                     strftime("%Y-%m-%d %H:%M:%S", strtotime($line[3])));

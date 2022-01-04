@@ -1,6 +1,6 @@
 /*----------------------------------------------- code for all of page -----------------------------------------------*/
 body{
-    background-image: linear-gradient(to bottom,#e0cc91,lightgrey );
+    background-image: linear-gradient(to bottom,white,lightgrey );
     background-repeat: repeat-x;
     min-height: 100vh;
     display: flex;
@@ -31,7 +31,7 @@ header img{
 header h1 {
     text-decoration: none;
     justify-content: center;
-    color: #653b0e;
+    color: black;
 }
 
 header .menu{
@@ -47,7 +47,7 @@ header a.button{
     justify-content: center;
     align-items: center;
     text-align: center;
-    border:2px solid rgb(167, 89, 17);
+    border:2px solid dimgray;
     border-radius: 12px;
     height: 40px;
     width : 15%;
@@ -55,13 +55,13 @@ header a.button{
     margin: 0 10px 0 0;
     background-color: white;
     text-decoration: none;
-    color: rgb(167, 89, 17);
+    color: black;
     font-size: 1rem;
 }
 
 header .button:hover{
     transition: 0.5s;
-    background-color: rgb(167, 89, 17);
+    background-color: black;
     color: white;
 }
 
@@ -100,7 +100,8 @@ footer .footRow{
 }
 
 .footOne:hover,.footTwo:hover {
-    color: gold;
+    text-decoration: underline;
+    color: white;
 }
 
 .footRow ul{
@@ -168,7 +169,7 @@ input.validation:hover{
     transition: 1s;
     color:white;
     font-weight: bold;
-    background-color: green;
+    background-color: dimgrey;
 }
 
 #login{
@@ -204,16 +205,18 @@ section h1{
     flex-direction: column;
     margin-top: 10px;
     justify-content: center;
-    color: #D8000C;
+    color: black;
+    text-decoration: underline;
+    font-weight: bold;
 
 }
 
 .error .txt{
-    border: 1.5px solid red;
+    border: 1.5px solid black;
     border-radius: 12px;
     padding: 10px;
     font-size: large;
-    background-color: #FFBABA;
+    background-color: white;
 }
 
 /*----------------------------------------------- Formulaire admin.php -----------------------------------------------*/
@@ -265,7 +268,7 @@ section form input.submit:hover{
 }
 
 section form input.submit:focus{
-    background-color: green;
+    background-color: black;
 }
 
 /*----------------------------------------------- Liste Flux admin.php -----------------------------------------------*/
@@ -357,20 +360,20 @@ article .row2{
 
 a.accueil{
     transition: 0.5s;
-    border:rgb(167, 89, 17) solid 2px;
+    border:black solid 2px;
     border-radius: 12px;
     margin: 30px 0 0 30px;
     width: 100px;
-    color: rgb(167, 89, 17);
+    color: white;
     padding: 5px;
-    background-color: white;
+    background-color: black;
     text-decoration: none;
     text-align: center;
 }
 
 a.accueil:hover{
     transition: 0.5s;
-    background-color: rgb(167, 89, 17);
+    background-color: dimgrey;
     font-weight: bold;
     color:white;
 }
@@ -411,7 +414,7 @@ input.add:hover{
     transition: 1s;
     color:white;
     font-weight: bold;
-    background-color: green;
+    background-color: black;
 }
 
 /*---------------------------------------------- news ListNews.php ---------------------------------------------------*/
@@ -428,7 +431,7 @@ article.accueil .row a{
     justify-content: center;
     align-items: center;
     text-align:justify;
-    color: white;
+    color: black;
 }
 
 article.accueil .row a:hover{
@@ -446,11 +449,11 @@ article.accueil .row a:hover .title{
     border: gray solid 2px;
     border-radius: 12px;
     margin: 10px;
-    background-image: linear-gradient(45deg,#516a15, #3d470e);
+    background-image: linear-gradient(45deg,white, lightgrey);
 }
 
 .col-md-3:hover{
-    background-image: linear-gradient(45deg,#81aa22, #91aa22);
+    background-image: linear-gradient(45deg,lightgrey, white);
     animation-name: pannel;
     position: relative;
     animation-duration: 1s;
@@ -525,7 +528,7 @@ ul.flux li.descr{
 }
 
 .navig a:hover{
-    text-decoration: blue underline;
+    text-decoration: black underline;
 }
 
 /*-------------------------------------------------- error.php -------------------------------------------------------*/
@@ -539,7 +542,7 @@ main{
 }
 
 main h1{
-    color: #516a15;
+    color: black;
     font-size: xxx-large;
 }
 

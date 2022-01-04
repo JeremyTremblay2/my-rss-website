@@ -22,4 +22,5 @@ class Constants {
     const PARSE_ERROR = 'Impossible de parser le flux RSS, il est incorrect ou non-reconnu.';
     const ERROR_RSS_FEED_ALREADY_EXISTS = 'Ce flux RSS est déjà présent en base de données';
     const DEFAULT_NUMBER_OF_NEWS = 12;
+    const DARKTHEME = 0;
 }

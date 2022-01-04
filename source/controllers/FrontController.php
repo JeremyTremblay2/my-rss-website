@@ -24,7 +24,8 @@ class FrontController {
                 null,
                 'home',
                 'connection',
-                'connectionClick'
+                'connectionClick',
+                'changeTheme'
             ),
             'Admin' => array(
                 'homeAdmin',

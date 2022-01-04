@@ -22,6 +22,13 @@ class UserModel {
         $this->gateway = new UserGateway(new Connection($dsn, $login, $password));
     }
 
+    public function initialize(){
+        $dark = $_SESSION["darktheme"] ?? 0;
+        var_dump($dark);
+        $dark=Validation::cleanInput($dark);
+        $dark=Validation::int($dark,"theme_sombre");
+    }
+
     /**
      * Get the user whose username is passed in argument
      * @param string $username The username of the user

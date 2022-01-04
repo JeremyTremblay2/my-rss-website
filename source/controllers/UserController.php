@@ -16,7 +16,6 @@ class UserController {
     public function __construct() {
         global $localPath, $views;
         $errorView = array();
-
         try{
             $action = $_REQUEST['action'] ?? null;
             if ($action != null) {
@@ -34,6 +33,9 @@ class UserController {
                     break;
                 case "connectionClick":
                     $this->connectionClicked();
+                    break;
+                case "changeTheme":
+                    $this->changeTheme();
                     break;
                 default:
                     $errorView[] = "Erreur lors de l'appel PHP.";
@@ -60,6 +62,16 @@ class UserController {
      */
     private function init(){
         global $localPath, $views;
+        $dark = $_SESSION["darktheme"]??2;
+        if(isset($dark)) {
+
+            $dark=Validation::cleanInput($dark);
+            $dark=Validation::int($dark,"darktheme");
+            $dark = $_SESSION["darktheme"];
+        }
+        else{
+            $dark = 2;
+        }
         $currentPage = $_REQUEST['page'] ?? 1;
         try {
             Validation::int($currentPage, "page courante");
@@ -117,6 +129,12 @@ class UserController {
         global $localPath, $views;
         $adminModel = new AdminModel();
         $admin = $adminModel->isAdmin();
+        if(isset($_SESSION['darktheme'])) {
+            $dark = $_SESSION["darktheme"];
+        }
+        else{
+            $dark = 0;
+        }
         if ($admin == null) {
             require($localPath . $views['auth']);
         }
@@ -179,6 +197,30 @@ class UserController {
 
         if (count($errorView) != 0) {
             require($localPath . $views['auth']);
+        }
+    }
+    private function changeTheme(){
+        global $localPath, $views;
+        $page = $_REQUEST['page'];
+        if($_SESSION['darktheme']==2){
+            $_SESSION['darktheme'] = 1;
+        }
+        else{
+            $_SESSION['darktheme']=2;
+        }
+        try {
+            if($page == "home"){
+                $this->init();
+            }
+            else if($page=="login"){
+                $this->connection();
+            }
+            else if($page=="admin"){
+                header('Location: ?action=homeAdmin');
+            }
+
+        } catch (Exception $e) {
+            require ($localPath.$views["error"]);
         }
     }
 }

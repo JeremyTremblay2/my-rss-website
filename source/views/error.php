@@ -8,7 +8,9 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <link type="text/css" rel="stylesheet" href="views/css/RSS.css">
+        <?php
+        require ("chapeauCSS.php");
+        ?>
         <meta charset="utf-8">
         <title>Erreur interne</title>
     </head>
