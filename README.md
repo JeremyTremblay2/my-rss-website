@@ -21,7 +21,7 @@ Ce projet a permit de réaliser un site web de news en utilisant les flux RSS de
 ## Comment le lancer ?
 
 * Si aucune base de donnée n'existe, en créer une sous son serveur web (phpmyadmin pour wamp par exemple).
-* Modifier le fichier config.php qui se trouver dans source/config. Remplacer les valeurs des variabels "login", "password" et "database" par celels de la base de données créer précédemment.
+* Modifier le fichier config.php qui se trouver dans source/config. Remplacer les valeurs des variables "login", "password" et "database" par celles de la base de données créé précédemment.
 * A noter qu'il est aussi possible de directement importer une base de donnée pré-remplie en chargeant le fichier source/config/server/database.sql qui contient toutes les requêtes de création des tables et des insertions.
 Attention : il se peut qu'en fonction du format d'encodage de votre base de données des caractères se comportent bizaremment sur les données déjà présentes (les accents).
 * Lancer le site en allant dans son serveur local et en allant dans le dossier source. A ce moment là le site devrait s'afficher.
