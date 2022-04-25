@@ -1,6 +1,8 @@
 # My Rss Website
 
-Ce projet a permit de réaliser un site web de news en utilisant les flux RSS de plusieurs sites webs.
+Ce projet a permit de réaliser un site web de news en utilisant les flux RSS de plusieurs sites webs.  
+Il a été réalisé dans le cadre de la deuxième année de DUT information à l'IUT de Clermont-Ferrand.
+Technologies utilisées : PHP, SQL, HTML, CSS (JS)
 
 ## Features
 
@@ -18,6 +20,13 @@ Ce projet a permit de réaliser un site web de news en utilisant les flux RSS de
 - [x] Des messages d'erreurs s'affichent à l'écran quand l'utilisateur n'effectue pas des actions valides.
 - [x] Un fichier d'initialisation de la BD permet de rapidement configurer le site.
 
+## Points importants du programme
+* Divers patrons d'architecture utilisés (MVC...)
+* Programmation Objet et patrons de conception
+* Utilisation de base de données, interface de configuration pour l'administrateur.
+* Intégration d'un thème sombre (à modifier depuis la BD).
+* Séparation des responsabilités. 
+
 ## Comment le lancer ?
 
 * Si aucune base de donnée n'existe, en créer une sous son serveur web (phpmyadmin pour wamp par exemple).
@@ -28,6 +37,6 @@ Attention : il se peut qu'en fonction du format d'encodage de votre base de donn
 
 > Note : si une erreur s'affiche il s'agit probablement d'un problème de configuration de la base de données.
 
-## Membres de projet 
-Jérémy TREMBLAY
+## Membres du projet 
+Jérémy TREMBLAY  
 Maxime GRANET
